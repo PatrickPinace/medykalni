@@ -19,7 +19,7 @@
   10. Blog - 3 ostatnie artykuły
   11. FinalCTA - końcowe CTA z kontaktem
   12. Footer - pełny footer z linkami, kontaktem, social media
-  
+
   🚀 Serwer działa:
 
   http://localhost:4322/
@@ -31,6 +31,5 @@
   - Dodaj prawdziwe artykuły do bloga
   - Dostosuj treści według potrzeb
   - Dodaj favicon
-
-  Wszystko gotowe do pracy - możesz teraz przeglądać stronę i wprowadzać
-   zmiany!
+ 
+ kurs prowadzenia karmienia piersią albo podstrona
