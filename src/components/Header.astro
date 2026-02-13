@@ -1,0 +1,100 @@
+---
+// Główne menu nawigacyjne
+---
+
+<header class="bg-white shadow-sm sticky top-0 z-50">
+  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between items-center h-20">
+      <!-- Logo -->
+      <div class="flex-shrink-0">
+        <a href="/" class="text-2xl font-heading font-bold text-primary">
+          Medykalni
+        </a>
+      </div>
+
+      <!-- Desktop Navigation -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a href="#szkolenia" class="text-gray-700 hover:text-primary transition-colors font-medium">
+          Szkolenia
+        </a>
+        <a href="#dla-placowek" class="text-gray-700 hover:text-primary transition-colors font-medium">
+          Dla placówek
+        </a>
+        <a href="#o-nas" class="text-gray-700 hover:text-primary transition-colors font-medium">
+          O nas
+        </a>
+        <a href="#wiedza" class="text-gray-700 hover:text-primary transition-colors font-medium">
+          Wiedza
+        </a>
+        <a href="#kontakt" class="text-gray-700 hover:text-primary transition-colors font-medium">
+          Kontakt
+        </a>
+        <a
+          href="#umow-rozmowe"
+          class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold"
+        >
+          Umów rozmowę
+        </a>
+      </div>
+
+      <!-- Mobile menu button -->
+      <div class="md:hidden">
+        <button
+          id="mobile-menu-button"
+          type="button"
+          class="text-gray-700 hover:text-primary focus:outline-none"
+          aria-label="Toggle menu"
+        >
+          <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+          </svg>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Navigation -->
+    <div id="mobile-menu" class="hidden md:hidden pb-4">
+      <div class="flex flex-col space-y-3">
+        <a href="#szkolenia" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+          Szkolenia
+        </a>
+        <a href="#dla-placowek" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+          Dla placówek
+        </a>
+        <a href="#o-nas" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+          O nas
+        </a>
+        <a href="#wiedza" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+          Wiedza
+        </a>
+        <a href="#kontakt" class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+          Kontakt
+        </a>
+        <a
+          href="#umow-rozmowe"
+          class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center"
+        >
+          Umów rozmowę
+        </a>
+      </div>
+    </div>
+  </nav>
+</header>
+
+<script>
+  // Mobile menu toggle
+  const mobileMenuButton = document.getElementById('mobile-menu-button');
+  const mobileMenu = document.getElementById('mobile-menu');
+
+  mobileMenuButton?.addEventListener('click', () => {
+    mobileMenu?.classList.toggle('hidden');
+  });
+
+  // Close mobile menu when clicking on a link
+  const mobileLinks = mobileMenu?.querySelectorAll('a');
+  mobileLinks?.forEach(link => {
+    link.addEventListener('click', () => {
+      mobileMenu?.classList.add('hidden');
+    });
+  });
+</script>
