@@ -32,4 +32,6 @@
   - Dostosuj treści według potrzeb
   - Dodaj favicon
  
- kurs prowadzenia karmienia piersią albo podstrona
+poprawa navibar, przechodząc na podstronę /polozna-na-swoim/ i klikajac w "O nas" czy "Szkolenia" i inne odnośniki to one dodają "#o-nas"to nie zadziała na innej podstronie
+schować na razie tę część z "Z czym najczęściej zgłaszają się do nas medycy i właściciele placówek?"
+schować na razie te część z "Jak wygląda współpraca"
