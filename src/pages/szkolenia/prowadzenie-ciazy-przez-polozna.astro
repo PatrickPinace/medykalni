@@ -270,7 +270,7 @@ import Footer from '../../components/Footer.astro';
             <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
               Anna Plaskota-Gładosz
             </h3>
-            <p class="text-accent font-semibold mb-3">COO, Położna / CDL</p>
+            <p class="text-accent font-semibold mb-3">Położna / CDL</p>
             <p class="text-gray-600 text-sm">
               Położna z ponad 10-letnim doświadczeniem, specjalistka w prowadzeniu ciąży fizjologicznej.
               Aktywnie praktykująca, prowadzi własną praktykę położniczą.
@@ -281,12 +281,287 @@ import Footer from '../../components/Footer.astro';
             <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
               Anna Buczek
             </h3>
-            <p class="text-accent font-semibold mb-3">BUM, Położna</p>
+            <p class="text-accent font-semibold mb-3">Położna</p>
             <p class="text-gray-600 text-sm">
               Specjalistka w zarządzaniu projektami medycznymi i edukacji położnych.
               Wieloletnie doświadczenie w szkoleniach dla personelu medycznego.
             </p>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Pakiety -->
+    <section class="py-16 md:py-24 bg-background-lighter">
+      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
+          Wybierz swój pakiet
+        </h2>
+        <p class="text-center text-gray-600 mb-12 text-lg">
+          Dostosuj szkolenie do swoich potrzeb
+        </p>
+
+        <div class="grid md:grid-cols-3 gap-6">
+          <!-- Pakiet Basic -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="mb-6">
+              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
+                Basic
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Podstawowy dostęp do szkolenia
+              </p>
+            </div>
+            <div class="mb-6">
+              <p class="text-4xl font-bold text-primary">1499 zł</p>
+              <p class="text-sm text-gray-500">netto</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Udział w 2-dniowym szkoleniu</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Certyfikat ukończenia</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Podstawowe materiały szkoleniowe</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Warsztaty praktyczne</span>
+              </li>
+            </ul>
+            <a
+              href="#zapisy"
+              class="block bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors font-semibold text-center"
+            >
+              Wybierz pakiet
+            </a>
+          </div>
+
+          <!-- Pakiet Standard (najpopularniejszy) -->
+          <div class="bg-white rounded-2xl p-8 shadow-xl border-2 border-accent relative">
+            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
+              <span class="bg-accent text-white px-4 py-1 rounded-full text-sm font-bold">
+                Najpopularniejszy
+              </span>
+            </div>
+            <div class="mb-6 mt-2">
+              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
+                Standard
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Rozszerzony pakiet z materiałami
+              </p>
+            </div>
+            <div class="mb-6">
+              <p class="text-4xl font-bold text-primary">1999 zł</p>
+              <p class="text-sm text-gray-500">netto</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700"><strong>Wszystko z pakietu Basic</strong></span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Rozszerzone materiały + wzory dokumentów</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Dostęp do platformy online (30 dni)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Nagrania wideo z szkolenia</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">1 konsultacja indywidualna (30 min)</span>
+              </li>
+            </ul>
+            <a
+              href="#zapisy"
+              class="block bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent-light transition-colors font-semibold text-center"
+            >
+              Wybierz pakiet
+            </a>
+          </div>
+
+          <!-- Pakiet Premium -->
+          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
+            <div class="mb-6">
+              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
+                Premium
+              </h3>
+              <p class="text-gray-600 text-sm">
+                Pełne wsparcie + mentoring
+              </p>
+            </div>
+            <div class="mb-6">
+              <p class="text-4xl font-bold text-primary">2999 zł</p>
+              <p class="text-sm text-gray-500">netto</p>
+            </div>
+            <ul class="space-y-3 mb-8">
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700"><strong>Wszystko z pakietu Standard</strong></span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Dostęp do platformy (90 dni)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">3 konsultacje indywidualne (po 60 min)</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Wsparcie email przez 3 miesiące</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Dostęp do grupy mentoringowej</span>
+              </li>
+              <li class="flex items-start gap-2">
+                <svg class="w-5 h-5 text-accent flex-shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
+                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                </svg>
+                <span class="text-gray-700">Materiały dodatkowe i case studies</span>
+              </li>
+            </ul>
+            <a
+              href="#zapisy"
+              class="block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center"
+            >
+              Wybierz pakiet
+            </a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Najczęściej zadawane pytania
+        </h2>
+        <div class="space-y-6">
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Czy szkolenie jest akredytowane?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Tak, szkolenie jest prowadzone przez wykwalifikowanych trenerów i po jego ukończeniu wydajemy certyfikat uczestnictwa. Szkolenie spełnia wymagania edukacji ustawicznej dla położnych.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Czy mogę zapłacić w ratach?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Tak, oferujemy możliwość płatności w 2 ratach. Szczegóły ustalamy indywidualnie przy rezerwacji miejsca.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Co jeśli nie mogę wziąć udziału w zaplanowanym terminie?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Możesz przenieść swoją rezerwację na kolejny termin szkolenia. Organizujemy szkolenia regularnie, więc znajdziesz termin odpowiedni dla siebie.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Czy w cenie są materiały szkoleniowe?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Tak, w cenie każdego pakietu są materiały szkoleniowe. Pakiety Standard i Premium zawierają dodatkowo wzory dokumentów, nagrania i dostęp do platformy online.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Czy szkolenie obejmuje nocleg i wyżywienie?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              W cenie szkolenia zapewniamy przerwy kawowe i lunch w obu dniach szkolenia. Nocleg nie jest wliczony w cenę, jednak chętnie pomożemy w znalezieniu odpowiedniego noclegu w okolicy.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Czy mogę otrzymać fakturę VAT?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Tak, wystawiamy faktury VAT. Przy rezerwacji podaj dane do faktury – możesz to zrobić na siebie lub na pracodawcę.
+            </p>
+          </details>
+
+          <details class="bg-background-lighter rounded-lg p-6 group">
+            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
+              <span>Ile osób uczestniczy w szkoleniu?</span>
+              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </summary>
+            <p class="text-gray-600 mt-4">
+              Ograniczamy liczbę uczestników do maksymalnie 20 osób, aby zapewnić wysoką jakość szkolenia i możliwość indywidualnego podejścia do każdego uczestnika.
+            </p>
+          </details>
         </div>
       </div>
     </section>

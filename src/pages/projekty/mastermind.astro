@@ -1,0 +1,399 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import TopBar from '../../components/TopBar.astro';
+import Header from '../../components/Header.astro';
+import Footer from '../../components/Footer.astro';
+---
+
+<Layout
+  title="Grupy Mastermind - Program wsparcia dla specjalistów medycznych | Medykalni"
+  description="Zamknięte grupy wsparcia dla specjalistów medycznych rozwijających własną praktykę. Wymiana doświadczeń, wzajemne wsparcie i rozwój biznesowy."
+>
+  <TopBar />
+  <Header />
+
+  <main>
+    <!-- Hero -->
+    <section class="bg-gradient-to-b from-background-lighter to-white py-16 md:py-24">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <div class="inline-block bg-accent/10 text-accent px-4 py-2 rounded-full text-sm font-semibold mb-6">
+          Nabór otwarty
+        </div>
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 mb-6">
+          Grupy Mastermind dla specjalistów medycznych
+        </h1>
+        <p class="text-xl md:text-2xl text-gray-600 mb-8">
+          Zamknięte grupy wsparcia dla medyków rozwijających własną praktykę
+        </p>
+      </div>
+    </section>
+
+    <!-- Czym jest Mastermind -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-8 text-center">
+          Czym jest Mastermind?
+        </h2>
+        <div class="prose prose-lg max-w-none text-gray-600">
+          <p class="text-xl mb-6">
+            Mastermind to zamknięta grupa 5-8 specjalistów medycznych, którzy regularnie spotykają się, aby wspierać się nawzajem w rozwoju swoich praktyk i gabinetów.
+          </p>
+          <p class="text-lg mb-6">
+            Każde spotkanie to przestrzeń do dzielenia się wyzwaniami, wymiana doświadczeń i wzajemne wsparcie w podejmowaniu trudnych decyzji biznesowych i klinicznych.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Dla kogo -->
+    <section class="py-16 md:py-24 bg-background-lighter">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Dla kogo są grupy Mastermind?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-6">
+          <div class="bg-white p-6 rounded-xl">
+            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Lekarzy z własną praktyką
+            </h3>
+            <p class="text-gray-600">
+              Prowadzisz własny gabinet lub jesteś w trakcie jego zakładania i potrzebujesz wsparcia w codziennych decyzjach biznesowych.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl">
+            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Położnych samodzielnych
+            </h3>
+            <p class="text-gray-600">
+              Prowadzisz praktykę położnej lub rozwijasz swoją działalność i szukasz inspiracji oraz wsparcia w rozwoju.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl">
+            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Fizjoterapeutów i innych specjalistów
+            </h3>
+            <p class="text-gray-600">
+              Zarządzasz gabinetem fizjoterapeutycznym lub inną placówką medyczną i chcesz rozwijać się biznesowo.
+            </p>
+          </div>
+
+          <div class="bg-white p-6 rounded-xl">
+            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
+              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Właścicieli placówek medycznych
+            </h3>
+            <p class="text-gray-600">
+              Zarządzasz kliniką lub zespołem medycznym i potrzebujesz przestrzeni do wymiany doświadczeń z innymi liderami.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Co rozwiązuje -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Jakie wyzwania rozwiązuje Mastermind?
+        </h2>
+        <div class="grid md:grid-cols-3 gap-6">
+          <div class="text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
+              Poczucie izolacji
+            </h3>
+            <p class="text-gray-600">
+              Czujesz się sam/sama w podejmowaniu trudnych decyzji biznesowych i klinicznych.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
+              Brak weryfikacji pomysłów
+            </h3>
+            <p class="text-gray-600">
+              Nie masz z kim omówić swoich planów rozwojowych i sprawdzić, czy są realistyczne.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-16 h-16 bg-red-100 rounded-full flex items-center justify-center mx-auto mb-4">
+              <svg class="w-8 h-8 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+              </svg>
+            </div>
+            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
+              Powtarzające się błędy
+            </h3>
+            <p class="text-gray-600">
+              Popełniasz te same błędy, które inni już rozwiązali – brakuje Ci dostępu do ich wiedzy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Co zyskujesz -->
+    <section class="py-16 md:py-24 bg-background-lighter">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Co zyskujesz w grupie Mastermind?
+        </h2>
+        <div class="grid md:grid-cols-2 gap-8">
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Wsparcie grupy równych
+              </h3>
+              <p class="text-gray-600">
+                Regularnie spotykasz się z ludźmi, którzy rozumieją Twoje wyzwania – bo sami przez to przechodzą.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.663 17h4.673M12 3v1m6.364 1.636l-.707.707M21 12h-1M4 12H3m3.343-5.657l-.707-.707m2.828 9.9a5 5 0 117.072 0l-.548.547A3.374 3.374 0 0014 18.469V19a2 2 0 11-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Nowe perspektywy
+              </h3>
+              <p class="text-gray-600">
+                Każdy członek grupy wnosi swoje unikalne doświadczenia – dzięki temu widzisz więcej rozwiązań.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Odpowiedzialność i motywacja
+              </h3>
+              <p class="text-gray-600">
+                Deklarujesz cele przed grupą i regularnie raportуjesz postępy – to motywuje do działania.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Praktyczne rozwiązania
+              </h3>
+              <p class="text-gray-600">
+                Nie teoria, a konkretne doświadczenia – co sprawdziło się u innych, a co było stratą czasu.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Oszczędność czasu
+              </h3>
+              <p class="text-gray-600">
+                Unikasz błędów, które inni już popełnili – to skraca Twoją drogę do sukcesu.
+              </p>
+            </div>
+          </div>
+
+          <div class="flex gap-4">
+            <div class="flex-shrink-0">
+              <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center">
+                <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" />
+                </svg>
+              </div>
+            </div>
+            <div>
+              <h3 class="text-xl font-heading font-bold text-gray-900 mb-2">
+                Bezpieczna przestrzeń
+              </h3>
+              <p class="text-gray-600">
+                Grupa działa w pełnej poufności – możesz otwarcie dzielić się wyzwaniami bez obawy o ocenę.
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Jak to działa -->
+    <section class="py-16 md:py-24 bg-white">
+      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
+          Jak działają grupy Mastermind?
+        </h2>
+        <div class="grid md:grid-cols-3 gap-8 mb-12">
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+              1
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Rekrutacja
+            </h3>
+            <p class="text-gray-600">
+              Dobieramy grupę 5-8 osób o podobnym poziomie doświadczenia i zbliżonych wyzwaniach.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-accent to-primary rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+              2
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Regularne spotkania
+            </h3>
+            <p class="text-gray-600">
+              Spotykamy się online co 2 tygodnie przez 90 minut – konsekwentnie przez minimum 6 miesięcy.
+            </p>
+          </div>
+
+          <div class="text-center">
+            <div class="w-20 h-20 bg-gradient-to-br from-primary to-accent rounded-full flex items-center justify-center mx-auto mb-4 text-white text-2xl font-bold">
+              3
+            </div>
+            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
+              Wymiana i wsparcie
+            </h3>
+            <p class="text-gray-600">
+              Każdy członek dzieli się wyzwaniami, otrzymuje feedback i wspiera innych w ich celach.
+            </p>
+          </div>
+        </div>
+
+        <div class="bg-background-lighter rounded-2xl p-8">
+          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6">
+            Format spotkań
+          </h3>
+          <ul class="space-y-4">
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-gray-600"><strong class="text-gray-900">Check-in:</strong> Każdy raportuje postępy od ostatniego spotkania</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-gray-600"><strong class="text-gray-900">Hot seat:</strong> Jeden uczestnik przedstawia swoje aktualne wyzwanie</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-gray-600"><strong class="text-gray-900">Burza mózgów:</strong> Grupa wspólnie szuka rozwiązań i dzieli się doświadczeniami</span>
+            </li>
+            <li class="flex gap-3">
+              <svg class="w-6 h-6 text-accent flex-shrink-0 mt-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              <span class="text-gray-600"><strong class="text-gray-900">Deklaracje:</strong> Każdy ustala konkretne działania do następnego spotkania</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="py-16 md:py-24 bg-gradient-to-br from-primary to-primary-dark text-white">
+      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        <h2 class="text-3xl md:text-4xl font-heading font-bold mb-6">
+          Dołącz do grupy Mastermind
+        </h2>
+        <p class="text-xl mb-8 text-white/90">
+          Nabór do nowych grup odbywa się na bieżąco. Skontaktuj się z nami, aby dowiedzieć się o najbliższych terminach i dostępności.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href="tel:+48881489851"
+            class="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-semibold text-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+            </svg>
+            Zadzwoń: +48 881 489 851
+          </a>
+          <a
+            href="mailto:kontakt@medykalni.pl"
+            class="inline-flex items-center justify-center gap-2 border-2 border-white text-white px-8 py-4 rounded-lg hover:bg-white hover:text-primary transition-colors font-semibold text-lg"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+            </svg>
+            Napisz: kontakt@medykalni.pl
+          </a>
+        </div>
+        <p class="mt-8 text-white/75 text-sm">
+          Chętnie odpowiemy na wszystkie pytania i pomożemy wybrać odpowiednią grupę.
+        </p>
+      </div>
+    </section>
+  </main>
+
+  <Footer />
+</Layout>
