@@ -1,553 +1,255 @@
-🧠 Architektura strony Medykalni – kompletna struktura
+0) Cel projektu
+Zbudować nową wersję Medykalni.pl jako profesjonalny serwis ofertowy (szkolenia + projekty), który:
 
-Nie myśl o stronie jako:
+prowadzi użytkownika od wejścia do zapisu/kontaktu,
 
-„wizytówka firmy”
+nie miesza intencji „szkolenia dla medyków” z „usługami dla pacjentek” (to jest Medi3),
 
-My projektujemy:
+zachowuje i wzmacnia SEO, zamiast oddawać ruch do linków zewnętrznych bez kontekstu.
 
-ścieżkę decyzyjną użytkownika od wejścia → do kontaktu
+1) Zasady porządkowania Medykalni ↔ Medi3
+1.1. Role domen
+Medykalni.pl: szkolenia + projekty rozwojowe dla medyków/położnych oraz rekrutacja dla placówek (B2P/B2B). Główna oferta: kurs „Prowadzenie ciąży przez położną”.
 
-Użytkownik medyczny podejmuje decyzję w takiej kolejności psychologicznej:
+Medi3.pl: oferta pacjencka (ciąża, szkoła rodzenia, poradnia laktacyjna itd.).
+​
 
-Czy to dla mnie?
+1.2. Linki wychodzące z Medykalni (zasada „tylko kontrolowane wyjścia”)
+Na Medykalni dopuszczamy TYLKO:
 
-Czy oni wiedzą co robią?
+wyjście do medi3.pl/polozna-na-swoim/ przez podstronę pośrednią Medykalni (mini-landing), bo to osobny produkt/ścieżka.
+​
 
-Czy mi pomogą?
+opcjonalnie 1 link w stopce „Dla pacjentek: Medi3.pl” (bez mieszania w głównych sekcjach sprzedażowych).
+​
 
-Jak to wygląda?
+2) Mapa strony (sitemap) – Medykalni 1.0
+Strony obowiązkowe
+/ – Strona główna (lejek decyzyjny)
 
-Ile mnie to kosztuje emocjonalnie i czasowo?
+/szkolenia/ – Katalog szkoleń (na start 1 pozycja)
 
-OK — odezwę się.
+/szkolenia/prowadzenie-ciazy-przez-polozna/ – Landing kursu (treść z obecnego /kurs)
+​
 
-I dokładnie tak będzie ułożona strona.
+/projekty/ – Hub projektów (Położna na swoim, Mastermind, Rekrutacja)
+​
 
-0️⃣ Górny pasek (top bar) – bardzo ważny
+/projekty/polozna-na-swoim/ – Mini-landing + CTA do Medi3
+​
 
-To coś czego teraz nie ma, a dramatycznie zwiększa zaufanie.
+/projekty/mastermind/ – Opis + nabór/zgłoszenie (formularz)
+​
 
-Wąski pasek nad menu (wysokość ok. 36px)
+/dla-placowek/rekrutacja/ – Oferta rekrutacji + formularz zapytania
+​
 
-Zawartość:
+/o-nas/ – Zespół + kim jesteśmy
 
-📞 numer telefonu
+/kontakt/ – Dane + formularz
 
-✉ email
+/dokumenty/ (lub /rodo/) – Polityka prywatności/RODO/regulaminy (na Medykalni; link do dokumentów fundacji możliwy, ale opisany)
+​
 
-mały napis:
-„Szkolenia i konsultacje dla personelu medycznego i właścicieli placówek”
+Przekierowania (SEO i porządek)
+/kurs → 301 → /szkolenia/prowadzenie-ciazy-przez-polozna/
+​
 
-Kolor: granatowy (primary)
-Tekst: biały
+3) Nawigacja (header) + CTA
+Menu
+Szkolenia → /szkolenia/
 
-Efekt → strona przestaje wyglądać jak blog.
+Projekty → /projekty/
 
-1️⃣ Header (menu)
+Dla placówek → /dla-placowek/rekrutacja/ (na start)
+​
 
-Lewo: logo
-Prawo:
+O nas → /o-nas/
 
-Szkolenia
+Wiedza → /wiedza/ (może być w 1.0 jako listing 3 wpisów + „wkrótce”, ale nie jest krytyczne)
 
-Dla placówek
+Kontakt → /kontakt/
 
-O nas
+Stały przycisk CTA
+Wariant A (najprostszy i spójny z kursem): „Zapisz się” → scroll do karty kursu albo bezpośrednio na landing kursu.
+​
+Wariant B (jeśli macie realny proces rozmowy): „Umów rozmowę” → /kontakt/ + wyróżniony formularz/kalendarz.
 
-Wiedza (blog)
+4) Strona główna – layout i treści sekcji (dokładny brief)
+Kolejność sekcji (zalecana pod obecną ofertę):
 
-Kontakt
+4.1. Top bar (wąski pasek)
+Tel, email, tagline „Szkolenia i projekty dla położnych oraz placówek medycznych” (bez obietnic konsultacji/wdrożeń, jeśli nie ma produktu).
+​
 
-Po prawej stały przycisk CTA:
-👉 „Umów rozmowę”
+4.2. Hero (H1 + 2 CTA + trust points)
+H1: „Szkolenia i projekty dla położnych oraz placówek medycznych” (lub podobne).
+Podtytuł: praktycznie, bez sloganów.
+CTA1: „Zobacz kurs” → sekcja „Nasze szkolenia” lub landing kursu.
+​
+CTA2: „Poznaj projekty” → /projekty/.
+Trust points (4 ikonki) – tylko rzeczy prawdziwe dziś, np.:
 
-To jest kluczowe — nie „kontakt”, tylko akcja.
+Prowadzą praktycy ochrony zdrowia
+​
 
-Sticky header (przyklejony przy scrollu).
+Program modułowy (kurs)
 
-2️⃣ HERO (najważniejsza sekcja strony)
+Materiały i certyfikat (kurs)
+​
 
-To NIE jest baner.
-To jest sekcja decyzyjna.
+Zapis online (Google Form)
+​
 
-Układ
+4.3. „Dla kogo” (3 kafle – zgodne z realnymi ścieżkami)
+Kafel 1: Położne → kurs „Prowadzenie ciąży przez położną”
+​
+Kafel 2: Położna na swoim → /projekty/polozna-na-swoim/ → dalej Medi3
+​
+Kafel 3: Placówki medyczne → rekrutacja /dla-placowek/rekrutacja/
+​
 
-Lewa strona — tekst
-Prawa — zdjęcie z pracy szkoleniowej (nie pozowane)
+4.4. Problem
+Nagłówek: „Z czym najczęściej zgłaszają się do nas położne i placówki?”
+Lista (krótka, skanowalna).
+Uwaga: jeśli w problemach są „wypalenie / chaos” OK, ale niech 2–3 punkty dotykają stricte praktyki położnej (żeby kurs był naturalnym rozwiązaniem).
 
-Treść (gotowiec)
+4.5. Rozwiązanie (bez „konsultacji/wdrożeń”, jeśli nie są produktem)
+Zamiast: „Szkolenia / konsultacje / wdrożenia”
+Daj:
 
-Nagłówek (H1):
+Szkolenia → /szkolenia/
+​
 
-Wspieramy rozwój personelu medycznego i pomagamy placówkom działać bezpiecznie i skutecznie
+Projekty rozwojowe → /projekty/ (Położna na swoim, Mastermind)
+​
 
-Podtytuł:
+Rekrutacja dla placówek → /dla-placowek/rekrutacja/
+​
 
-Szkolenia, konsultacje i wdrożenia prowadzone przez praktyków ochrony zdrowia – bez teorii i motywacyjnych sloganów.
+4.6. Nasze szkolenia (sekcja produktowa)
+Na start 1 karta kursu:
 
-CTA (główny):
-Sprawdź szkolenia
+tytuł: „Prowadzenie ciąży przez położną”
+​
 
-CTA (drugorzędny – obrys):
-Umów rozmowę
+format: stacjonarne + online (bo masz moduły online)
+​
 
-Pod nagłówkiem — dowód społeczny (bardzo ważne)
+cena: „od 1499 zł” (pakiety)
+​
 
-Poziome ikonki:
+CTA: „Zobacz szczegóły” → landing kursu
+​
 
-✔ szkolenia prowadzone przez praktyków
-✔ wsparcie indywidualne
-✔ wdrożenia w placówkach
-✔ realne przypadki kliniczne
+4.7. Autorytet (zespół)
+4 osoby core (jak na obecnej Medykalni): Anna Buczek, Magdalena Golba, Artur Gładosz, Anna Płaskota‑Gładosz.
+​
+Zasady:
 
-Ta sekcja robi ogromną różnicę — użytkownik przestaje się zastanawiać „co to jest”.
+rola kliniczna + doświadczenie (bez korpo skrótów BUM/COO/CEO na homepage),
 
-3️⃣ Sekcja: „Dla kogo jest Medykalni”
+1 zdanie „co robi w Medykalni”.
 
-(TO MUSI BYĆ WYSOKO — obecnie tego brakuje)
+4.8. Proces (jak wygląda udział / współpraca)
+Dla kursu:
 
-3 duże kafle:
+Wybór pakietu → 2) Zapis przez formularz → 3) Potwierdzenie/organizacja → 4) Realizacja + materiały/certyfikat
+​
 
-Kafelek 1
+4.9. Opinie (social proof)
+W 1.0 tylko opinie dotyczące:
 
-Personel medyczny
-„Rozwój kompetencji, pewność pracy z pacjentem, ścieżka kariery”
+kursu (uczestniczki – położne)
+​
 
-Kafelek 2
+ewentualnie programu „Położna na swoim” (jeśli macie zgody)
+​
+Nie dodawać opinii o „wdrożeniach” i „konsultacjach 1:1”, jeśli na stronie nie ma takiej usługi jako produktu.
 
-Lekarze i specjaliści
-„Rozwój prywatnej praktyki, organizacja pracy, komunikacja z pacjentem”
+4.10. Wiedza (opcjonalnie w 1.0)
+3 ostatnie wpisy, ale bez udawania „dużego bloga”, jeśli go nie ma.
 
-Kafelek 3
+4.11. Końcowe CTA
+Nagłówek: „Nie musisz wszystkiego rozwiązywać samodzielnie”
+Przyciski: „Zapisz się na kurs” (do landing) + „Skontaktuj się”.
+​
 
-Właściciele placówek
-„Rekrutacja, zarządzanie zespołem, procedury i wdrożenia”
+4.12. Footer (rozbudowany)
+dane kontaktowe,
 
-Po kliknięciu → prowadzi do podstron (to ważne SEO i konwersyjnie).
+linki szybkie,
 
-4️⃣ Sekcja PROBLEM (najbardziej konwertująca)
+dokumenty (RODO/polityka),
 
-Tu większość stron szkoleniowych popełnia błąd: opisuje ofertę zamiast problem.
+1 link do Medi3 w sekcji „Dla pacjentek” (opcjonalnie).
+​
 
-Nagłówek:
+5) Landing kursu „Prowadzenie ciąży…” – wymagania (kopia z obecnego /kurs, ale uporządkowana)
+Strona ma zachować wszystkie kluczowe elementy:
 
-Z czym najczęściej zgłaszają się do nas medycy i właściciele placówek?
+problem/pytania startowe,
 
-Lista:
+data i miejsce,
 
-brak pewności w pracy z pacjentem
+program modułowy,
 
-chaos organizacyjny w gabinecie
+pakiety: 1499 / 2499 / 4499,
 
-trudności z personelem
+eksperci,
 
-brak standardów pracy
+CTA do Google Form.
+​
 
-stres i wypalenie zawodowe
+Usprawnienia UX:
 
-brak czasu na rozwój
+sticky box (data, miejsce, „od 1499 zł”, przycisk „Zapisz się”)
+​
 
-Efekt psychologiczny:
-„oni mnie rozumieją”
+porównanie pakietów w 3 kartach (co zawiera)
+​
 
-5️⃣ Sekcja ROZWIĄZANIE (dopiero teraz oferta)
+sekcja FAQ: płatność, faktura, certyfikat, nocleg (bo w standard jest „możliwość bezpłatnego noclegu”)
+​
 
-Nagłówek:
+6) Podstrona „Położna na swoim” (mini-landing w Medykalni)
+Cel: nie wysyłać człowieka „na zimno” do Medi3.
+Struktura:
 
-Jak możemy pomóc
+Czym jest program
 
-3 karty:
+Dla kogo
 
-Szkolenia
+Co rozwiązuje
 
-praktyczne warsztaty
+Co otrzymujesz (w punktach)
 
-Konsultacje indywidualne
+Jak wygląda zapis
 
-1:1
+CTA: „Przejdź do zapisów” → https://medi3.pl/polozna-na-swoim/
+​
 
-Wdrożenia w placówkach
+7) Podstrona rekrutacji (dla placówek)
+Z obecnej strony wynika, że oferujecie kompleksową pomoc rekrutacyjną dla placówek.
+​
+Struktura:
 
-procesy, rekrutacja, organizacja pracy
+Dla kogo (kliniki, gabinety, szpitale)
 
-Każda karta:
-opis + przycisk „Dowiedz się więcej”
+Jakich specjalistów rekrutujecie (lista otwarta)
 
-6️⃣ Sekcja AUTORYTET (krytyczna)
+Jak wygląda proces (4 kroki)
 
-Tu Twoja koncepcja zespołu — ale w odpowiedniej formie.
+Co jest potrzebne od placówki (brief)
 
-Nagłówek:
+CTA: formularz „Zapytaj o rekrutację”
 
-Za projektem stoją praktycy ochrony zdrowia
+8) Checklist dla wykonawcy (żeby nie powstał nowy chaos)
+Każdy element menu ma prowadzić do istniejącej strony (bez „Wkrótce” w menu).
 
-Pod każdym zdjęciem:
+Żadnych linków do Medi3 bez strony pośredniej, poza ewentualnym linkiem w stopce „Dla pacjentek”.
 
-Imię Nazwisko
-specjalizacja
-ile lat pracy
-co robi w Medykalni
+Sekcje homepage nie obiecują usług, których nie ma w ofercie jako podstron (szczególnie „konsultacje/wdrożenia”).
 
-Bardzo ważne:
-małe podpisy pod zdjęciami typu:
-
-„na szkoleniu z personelem”
-„wdrożenie w gabinecie”
-
-To zwiększa wiarygodność bardziej niż biografia.
-
-7️⃣ Sekcja „Jak wygląda współpraca”
-
-(mega ważna dla medyków)
-
-Infografika 4 kroki:
-
-Rozmowa wstępna
-
-Dobór rozwiązania
-
-Szkolenie / wdrożenie
-
-Opieka po szkoleniu
-
-To dramatycznie obniża opór kontaktu.
-
-8️⃣ Opinie (social proof)
-
-Nagłówek:
-
-Co mówią uczestnicy i właściciele placówek
-
-Każda opinia:
-
-imię
-
-zawód
-
-miasto
-
-(jeśli możliwe) zdjęcie
-
-To w medycynie jest absolutnie kluczowe.
-
-9️⃣ Sekcja Wiedza / Blog
-
-3 ostatnie artykuły:
-
-To robi dwie rzeczy:
-
-SEO
-
-eksperckość
-
-Medycy bardzo sprawdzają wiedzę.
-
-🔟 Sekcja CTA końcowe (bardzo ważna)
-
-Duża, kontrastowa sekcja.
-
-Nagłówek:
-
-Nie musisz wszystkiego rozwiązywać samodzielnie
-
-Tekst:
-Krótka rozmowa pozwoli określić, czy i jak możemy pomóc.
-
-Przycisk:
-Umów bezpłatną rozmowę
-
-(To jest najważniejszy przycisk na stronie)
-
-11️⃣ Footer (rozbudowany)
-
-dane firmy
-
-adres
-
-telefon
-
-mail
-
-szybkie linki
-
-RODO
-
-social media
-
-Dlaczego to zadziała
-
-Obecnie strona jest:
-informacyjna
-
-Po tej zmianie będzie:
-decyzyjna
-
-Czyli użytkownik nie tylko przeczyta — ale podejmie krok.
-
-I to jest dokładnie różnica między stroną „ładną” a stroną „profesjonalną”.
-
-
-Kolory + topografia + hero
-
-1. Kolorystyka — prawie idealna, ale jedna poprawka
-
-Twoje kolory są dobre, ale problem jest tutaj:
-
-butelkowa zieleń + beż + szeryf = kojarzy się z kancelarią, SPA albo psychologiem.
-
-A medycyna rządzi się innymi skojarzeniami poznawczymi.
-
-W medycynie użytkownik podświadomie szuka:
-
-sterylności
-
-kontroli
-
-procedur
-
-kompetencji
-
-Dlatego najlepsze strony medyczne na świecie (Mayo Clinic, Cleveland Clinic, NHS, Medicover) mają chłodne kolory, nie ciepłe.
-
-Co zmienić
-
-Zostaw:
-
-biel
-
-chłodne szarości ✔
-
-Zmień:
-
-secondary (beż) ❌ → delikatny medyczny turkus / teal
-
-Dlaczego?
-
-Bo mózg kojarzy:
-
-turkus = opieka zdrowotna
-
-granat = autorytet
-
-biel = bezpieczeństwo
-
-I nagle strona przestaje być coachingowa.
-
-Proponowana paleta (bardzo bezpieczna psychologicznie)
-
-Primary:
-#1E3A5F (zostaje – bardzo dobry)
-
-Accent medyczny:
-#2FA4A9 ← to jest złoto dla medycznych stron
-
-Tło:
-#F8FAFC
-#EEF2F6
-
-CTA hover:
-#163047
-
-To już zaczyna wyglądać jak instytucja, nie jak kurs.
-
-2. Typografia — tu jest jeden UX-problem
-
-Szeryf w nagłówkach to świetny pomysł w branży prawniczej i edukacyjnej.
-Ale w medycznej bywa ryzykowny.
-
-Dlaczego?
-
-Bo użytkownicy medyczni:
-
-dużo czytają na telefonie
-
-są zmęczeni po dyżurach
-
-skanują stronę, nie czytają jej
-
-Szeryf spowalnia skanowanie treści.
-
-Czyli:
-estetyka ↑
-czytelność ↓
-konwersja ↓
-
-Lepsze rozwiązanie
-
-Zamiast typowej pary serif + sans:
-
-zrób system typograficzny medycznych SaaSów
-
-To jest obecnie standard UX dla ekspertów.
-
-Nagłówki: Manrope lub Plus Jakarta Sans
-Treść: Inter
-
-Efekt:
-
-nadal elegancko
-
-nadal poważnie
-
-ale 2× bardziej czytelnie
-
-i bardziej „klinicznie profesjonalnie”
-
-Strona przestaje wyglądać jak blog ekspercki, a zaczyna jak platforma edukacyjna.
-
-3. Hero Section — tu jest największy problem konwersji
-
-Twoje:
-
-„Szkolenia, które zmieniają myślenie o opiece medycznej”
-
-To jest ładne.
-Ale to jest slogan marketingowy.
-
-A użytkownik po wejściu na stronę ma w głowie:
-
-„co konkretnie mi to da?”
-
-Hero na stronie usługowej NIE może być brandingowy.
-On musi być transakcyjny.
-
-Co powinno być w hero (bardzo ważne)
-
-Hero musi w 5 sekund odpowiedzieć:
-
-Dla kogo jest ta strona
-
-Co dostanę
-
-Dlaczego oni są wiarygodni
-
-Lepsza wersja:
-
-Nagłówek:
-
-Szkolenia i wsparcie dla personelu medycznego i właścicieli placówek
-
-Podtytuł:
-
-Uczymy jak bezpiecznie pracować z pacjentem, rozwijać karierę i prowadzić gabinet zgodnie z realiami rynku medycznego.
-
-Pod nagłówkiem (to bardzo ważne):
-mały pasek z dowodem społecznym:
-
-✔ 1000+ przeszkolonych specjalistów
-✔ Praktycy medycyny, nie trenerzy teoretyczni
-✔ Konsultacje indywidualne i wdrożenia
-
-To podnosi konwersję dramatycznie.
-
-4. Sekcja „Kim jesteśmy” — tu masz dobry pomysł, ale trzeba go odwrócić
-
-Ty chcesz:
-
-zdjęcia zespołu
-
-To jest dobre.
-
-Ale w medycynie najpierw autorytet, potem człowiek.
-
-Nie:
-„Poznaj nas”
-
-Tylko:
-„Dlaczego możesz nam zaufać”
-
-Jak to zrobić
-
-Zamiast sekcji o nazwie:
-
-Twój zespół ekspertów
-
-zrób:
-
-Za projektem stoją praktycy ochrony zdrowia
-
-I pod każdym zdjęciem dodaj:
-
-specjalizację
-
-doświadczenie
-
-konkrety (np. liczba wdrożeń / lat pracy)
-
-To natychmiast zmienia percepcję z „szkoleniowcy” → „eksperci branżowi”.
-
-5. Najważniejsza rzecz, której teraz nie ma (a powinna być)
-
-Na tej stronie brakuje czegoś kluczowego dla medycyny: struktury zaufania.
-
-Powinny się pojawić 3 rzeczy:
-
-1. Sekcja „dla kogo”
-
-3 kafle:
-
-pielęgniarki / położne
-
-lekarze
-
-właściciele placówek
-
-Użytkownik natychmiast widzi:
-
-„to jest strona dla mnie”
-
-2. Opinie (bardzo ważne w tej branży)
-
-Nie cytaty marketingowe.
-
-Tylko:
-
-imię
-
-zawód
-
-miasto
-
-zdjęcie (jeśli możliwe)
-
-To w medycynie działa 10× mocniej niż opis oferty.
-
-3. Jak wygląda współpraca (proces)
-
-Ludzie medyczni kochają procedury.
-
-Sekcja:
-
-Rozmowa wstępna
-
-Dobór szkolenia
-
-Wdrożenie
-
-Opieka po szkoleniu
-
-To radykalnie obniża niepewność.
-
-Podsumowanie
-
-Twoja koncepcja jest:
-✔ estetyczna
-✔ sensowna
-✔ profesjonalna
-
-Ale po poprawkach może być:
-
-stroną, która naprawdę sprzedaje.
-
-Najważniejsze zmiany:
-
-usuń coachingowe skojarzenia (beż, storytelling w hero)
-
-dodaj dowody kompetencji
-
-dodaj strukturę procesu
-
-pisz konkretem, nie sloganem
-
-pokaż dla kogo to jest w pierwszych 8 sekundach
+/kurs przekierowuje na docelowy URL szkolenia.
+​
