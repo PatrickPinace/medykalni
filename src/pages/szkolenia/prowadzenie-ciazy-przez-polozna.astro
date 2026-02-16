@@ -3,15 +3,33 @@ import Layout from '../../layouts/Layout.astro';
 import TopBar from '../../components/TopBar.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
+import { getEntry } from 'astro:content';
+import { formatSingleDatePL, formatShortDatePL, formatDateRangePL, formatShortRangePL } from '../../utils/dateFormatters';
 
-// Google Forms URL
-const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHYfqAx5xRmuAnI2sQ9mKq6h6vdzN3xfmf8L-w/viewform';
+// Load course data from YAML
+const courseData = await getEntry('courses', 'prowadzenie-ciazy');
+if (!courseData) {
+  throw new Error('Course data not found');
+}
+
+const course = courseData.data;
+const activeEdition = course.editions.find(e => e.active);
+if (!activeEdition) {
+  throw new Error('No active edition found');
+}
+
+// Extract data for easy use
+const pricing = course.pricing;
+const place = course.place;
+const edition = activeEdition;
+const GOOGLE_FORM_URL = edition.signupUrl;
+
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout
-  title="Prowadzenie ciąży przez położną - Szkolenie 18-19.10.2025 | Medykalni"
-  description="Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród. Szkolenie w Mielcu, 18-19 października 2025."
+  title={`${course.title} - Szkolenie ${formatShortDatePL(edition.onsite.start)}-${formatShortDatePL(edition.onsite.end)} | Medykalni`}
+  description={`Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród. Szkolenie w ${place.city}, ${formatShortRangePL(edition.onsite.start, edition.onsite.end)}.`}
 >
   <TopBar />
   <Header />
@@ -23,9 +41,9 @@ const baseUrl = import.meta.env.BASE_URL;
         <!-- Breadcrumb -->
         <nav class="mb-6 text-sm">
           <ol class="flex items-center gap-2 text-gray-600">
-            <li><a href="/szkolenia" class="hover:text-primary">Szkolenia</a></li>
+            <li><a href={`${baseUrl}szkolenia`} class="hover:text-primary">Szkolenia</a></li>
             <li>→</li>
-            <li class="text-gray-900 font-semibold">Prowadzenie ciąży przez położną</li>
+            <li class="text-gray-900 font-semibold">{course.title}</li>
           </ol>
         </nav>
 
@@ -33,7 +51,7 @@ const baseUrl = import.meta.env.BASE_URL;
           <!-- Left column: Main content -->
           <div class="lg:col-span-2">
             <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-              Prowadzenie ciąży przez położną
+              {course.title}
             </h1>
 
             <p class="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
@@ -71,21 +89,20 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Termin</div>
-                <div class="text-gray-900 font-bold">18–19.10.2025</div>
+                <div class="text-gray-900 font-bold">{formatShortDatePL(edition.onsite.start)}–{formatShortDatePL(edition.onsite.end)}</div>
               </div>
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Miejsce</div>
-                <div class="text-gray-900 font-bold">Mielec</div>
-                <div class="text-xs text-gray-600">Podkarpackie</div>
+                <div class="text-gray-900 font-bold">{place.city}</div>
+                <div class="text-xs text-gray-600">{place.region}</div>
               </div>
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Forma</div>
-                <div class="text-gray-900 font-bold text-sm">Stacjonarne</div>
-                <div class="text-xs text-gray-600">+ online</div>
+                <div class="text-gray-900 font-bold text-sm">{course.format}</div>
               </div>
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Cena</div>
-                <div class="text-gray-900 font-bold">od 1499 zł</div>
+                <div class="text-gray-900 font-bold">od {pricing.basic} {pricing.currency}</div>
               </div>
             </div>
 
@@ -113,17 +130,17 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="bg-white rounded-2xl p-6 shadow-xl lg:sticky lg:top-24">
               <div class="mb-4">
                 <p class="text-sm text-gray-600 mb-2">Najbliższy termin:</p>
-                <p class="text-2xl font-bold text-primary mb-1">18–19 października 2025</p>
-                <p class="text-gray-600">Mielec, woj. Podkarpackie</p>
+                <p class="text-2xl font-bold text-primary mb-1">{formatShortRangePL(edition.onsite.start, edition.onsite.end)}</p>
+                <p class="text-gray-600">{place.city}, woj. {place.region}</p>
               </div>
               <div class="border-t pt-4 mb-4">
                 <div class="flex justify-between items-center mb-2">
                   <span class="text-gray-600">Forma:</span>
-                  <span class="font-semibold">Stacjonarne + online</span>
+                  <span class="font-semibold">{course.format}</span>
                 </div>
                 <div class="flex justify-between items-center mb-2">
                   <span class="text-gray-600">Cena:</span>
-                  <span class="font-semibold text-primary">od 1499 zł</span>
+                  <span class="font-semibold text-primary">od {pricing.basic} {pricing.currency}</span>
                 </div>
               </div>
               <a
@@ -335,7 +352,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <h3 class="text-xl font-heading font-bold text-gray-900">
                   Moduł I: Podstawy prowadzenia ciąży przez położną
                 </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, 18 października 2025</p>
+                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatSingleDatePL(edition.onsite.start)}</p>
               </div>
               <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -374,7 +391,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <h3 class="text-xl font-heading font-bold text-gray-900">
                   Moduł II: Prowadzenie ciąży w praktyce
                 </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, 18-19 października 2025</p>
+                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatShortRangePL(edition.onsite.start, edition.onsite.end)}</p>
               </div>
               <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -413,7 +430,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <h3 class="text-xl font-heading font-bold text-gray-900">
                   Moduł III: Kinesiotaping w ciąży
                 </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, 19 października 2025</p>
+                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatSingleDatePL(edition.onsite.end)}</p>
               </div>
               <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -586,14 +603,14 @@ const baseUrl = import.meta.env.BASE_URL;
               </p>
             </div>
             <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">1499 zł</p>
+              <p class="text-5xl font-bold text-primary">{pricing.basic} {pricing.currency}</p>
             </div>
             <ul class="space-y-3 mb-8">
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span class="text-gray-700">1 dzień szkolenia stacjonarnego w Mielcu – <strong>18.10.2025</strong></span>
+                <span class="text-gray-700">1 dzień szkolenia stacjonarnego w {place.city} – <strong>{formatShortDatePL(edition.onsite.start)}</strong></span>
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -640,14 +657,14 @@ const baseUrl = import.meta.env.BASE_URL;
               </p>
             </div>
             <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">2499 zł</p>
+              <p class="text-5xl font-bold text-primary">{pricing.standard} {pricing.currency}</p>
             </div>
             <ul class="space-y-3 mb-8">
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span class="text-gray-700">2 dni szkolenia stacjonarnego w Mielcu – <strong>18.10.2025 i 19.10.2025</strong></span>
+                <span class="text-gray-700">2 dni szkolenia stacjonarnego w {place.city} – <strong>{formatDateRangePL(edition.onsite.start, edition.onsite.end)}</strong></span>
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -683,7 +700,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span class="text-gray-700">Możliwość noclegu w Mielcu (opcjonalnie, za dodatkową opłatą)</span>
+                <span class="text-gray-700">Możliwość noclegu w {place.city} (opcjonalnie, za dodatkową opłatą)</span>
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
@@ -713,7 +730,7 @@ const baseUrl = import.meta.env.BASE_URL;
               </p>
             </div>
             <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">4499 zł</p>
+              <p class="text-5xl font-bold text-primary">{pricing.premium} {pricing.currency}</p>
             </div>
             <ul class="space-y-3 mb-8">
               <li class="flex items-start gap-2">
@@ -824,9 +841,9 @@ const baseUrl = import.meta.env.BASE_URL;
                 </tr>
                 <tr>
                   <td class="py-3 px-4 text-gray-700 font-bold">Cena</td>
-                  <td class="text-center py-3 px-4 font-bold text-primary">1499 zł</td>
-                  <td class="text-center py-3 px-4 bg-accent/5 font-bold text-primary">2499 zł</td>
-                  <td class="text-center py-3 px-4 font-bold text-primary">4499 zł</td>
+                  <td class="text-center py-3 px-4 font-bold text-primary">{pricing.basic} {pricing.currency}</td>
+                  <td class="text-center py-3 px-4 bg-accent/5 font-bold text-primary">{pricing.standard} {pricing.currency}</td>
+                  <td class="text-center py-3 px-4 font-bold text-primary">{pricing.premium} {pricing.currency}</td>
                 </tr>
               </tbody>
             </table>

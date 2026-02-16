@@ -1,0 +1,48 @@
+title: "Prowadzenie ciąży przez położną"
+slug: "prowadzenie-ciazy-przez-polozna"
+status: "active"
+
+format: "Stacjonarne + online"
+
+place:
+  city: "Mielec"
+  region: "Podkarpackie"
+  country: "PL"
+
+pricing:
+  basic: 1499
+  standard: 2499
+  premium: 4499
+  currency: "PLN"
+
+editions:
+  - id: "2025-10"
+    active: true
+    signupUrl: "https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHYfqAx5xRmuAnI2sQ9mKq6h6vdzN3xfmf8L-w/viewform"
+    onsite:
+      start: "2025-10-18"
+      end: "2025-10-19"
+    notes:
+      basicDay: 1
+      standardDays: "1-2"
+      onlineSummary: "Szkolenie online (Moduł IV) + mentoring (Moduł V)"
+
+modules:
+  - id: "I"
+    title: "Moduł I: Podstawy prowadzenia ciąży przez położną"
+    mode: "onsite"
+  - id: "II"
+    title: "Moduł II: Prowadzenie ciąży w praktyce"
+    mode: "onsite"
+  - id: "III"
+    title: "Moduł III: Kinesiotaping w ciąży"
+    mode: "onsite"
+  - id: "IV"
+    title: "Moduł IV: Suplementacja, odżywianie i interpretacja badań"
+    mode: "online"
+  - id: "V"
+    title: "Moduł V: Mentoring i wsparcie w prowadzeniu ciąży"
+    mode: "online"
+  - id: "VI"
+    title: "Moduł VI: Kontraktowanie z NFZ i wsparcie prawno-biznesowe"
+    mode: "online"
