@@ -1,5 +1,6 @@
 ---
 // Footer
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <footer id="kontakt" class="bg-gray-900 text-white py-12">
@@ -46,7 +47,7 @@
           <a href="#szkolenia" class="block text-gray-400 hover:text-accent transition-colors">
             Szkolenia
           </a>
-          <a href="/polozna-na-swoim" class="block text-gray-400 hover:text-accent transition-colors">
+          <a href={`${baseUrl}polozna-na-swoim`} class="block text-gray-400 hover:text-accent transition-colors">
             Położna na swoim
           </a>
           <a href="#dla-placowek" class="block text-gray-400 hover:text-accent transition-colors">

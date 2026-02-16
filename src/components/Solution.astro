@@ -1,5 +1,6 @@
 ---
 // Sekcja Rozwiązanie - dopiero teraz oferta
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <section id="dla-placowek" class="py-16 md:py-24 bg-white">
@@ -26,7 +27,7 @@
         <p class="text-white/90 leading-relaxed mb-6">
           Praktyczne warsztaty i kursy dla położnych prowadzące przez doświadczonych praktyków medycznych.
         </p>
-        <a href="/szkolenia" class="inline-flex items-center font-semibold hover:text-accent transition-colors">
+        <a href={`${baseUrl}szkolenia`} class="inline-flex items-center font-semibold hover:text-accent transition-colors">
           Zobacz ofertę
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -49,7 +50,7 @@
         <p class="text-white/90 leading-relaxed mb-6">
           Długoterminowe programy wsparcia: Położna na swoim, grupy Mastermind i społeczności eksperckie.
         </p>
-        <a href="/projekty" class="inline-flex items-center font-semibold hover:text-primary transition-colors">
+        <a href={`${baseUrl}projekty`} class="inline-flex items-center font-semibold hover:text-primary transition-colors">
           Poznaj projekty
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
@@ -72,7 +73,7 @@
         <p class="text-white/90 leading-relaxed mb-6">
           Kompleksowa pomoc w rekrutacji specjalistów medycznych dla klinik, gabinetów i szpitali.
         </p>
-        <a href="/dla-placowek/rekrutacja" class="inline-flex items-center font-semibold hover:text-accent transition-colors">
+        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="inline-flex items-center font-semibold hover:text-accent transition-colors">
           Zapytaj o rekrutację
           <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
