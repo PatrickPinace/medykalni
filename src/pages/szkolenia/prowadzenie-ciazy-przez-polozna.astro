@@ -6,6 +6,7 @@ import Footer from '../../components/Footer.astro';
 
 // Google Forms URL
 const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHYfqAx5xRmuAnI2sQ9mKq6h6vdzN3xfmf8L-w/viewform';
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -845,7 +846,7 @@ const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHY
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/anna-plaskota-gladosz-avatar.png"
+                src={`${baseUrl}images/team/anna-plaskota-gladosz-avatar.png`}
                 alt="mgr Anna Paskota-Gładosz"
                 class="w-full h-full object-cover"
               />
@@ -870,7 +871,7 @@ const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHY
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/kinga-niecko-avatar.png"
+                src={`${baseUrl}images/team/kinga-niecko-avatar.png`}
                 alt="mgr Kinga Niećko"
                 class="w-full h-full object-cover"
               />
@@ -895,7 +896,7 @@ const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHY
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/barbara-pieklo-avatar.png"
+                src={`${baseUrl}images/team/barbara-pieklo-avatar.png`}
                 alt="dr Barbara Piekło"
                 class="w-full h-full object-cover"
               />
@@ -920,7 +921,7 @@ const GOOGLE_FORM_URL = 'https://docs.google.com/forms/d/e/1FAIpQLSesiA7LRVTSDHY
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/katarzyna-soja-chydzinska-avatar.png"
+                src={`${baseUrl}images/team/katarzyna-soja-chydzinska-avatar.png`}
                 alt="mgr Katarzyna Soja-Chydzińska"
                 class="w-full h-full object-cover"
               />

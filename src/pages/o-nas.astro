@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import TopBar from '../components/TopBar.astro';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+
+const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout
@@ -112,7 +114,7 @@ import Footer from '../components/Footer.astro';
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/anna-plaskota-gladosz.jpg"
+                src={`${baseUrl}images/team/anna-plaskota-gladosz.jpg`}
                 alt="Anna Plaskota-Gładosz"
                 class="w-full h-full object-cover"
               />
@@ -134,7 +136,7 @@ import Footer from '../components/Footer.astro';
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
             <img
-              src="/images/team/anna-buczek.jpg"
+              src={`${baseUrl}images/team/anna-buczek.jpg`}
               alt="Anna Buczek"
               class="w-full h-full object-cover object-[center_30%]"
             />
@@ -156,7 +158,7 @@ import Footer from '../components/Footer.astro';
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/magdalena-golba.jpg"
+                src={`${baseUrl}images/team/magdalena-golba.jpg`}
                 alt="Magdalena Golba"
                 class="w-full h-full object-cover"
               />
@@ -178,8 +180,7 @@ import Footer from '../components/Footer.astro';
           <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
             <div class="aspect-square">
               <img
-                src="/images/team/artur-gladosz2.png
-                "
+                src={`${baseUrl}images/team/artur-gladosz2.png`}
                 alt="Artur Gładosz"
                 class="w-full h-full object-cover"
               />
