@@ -4,7 +4,7 @@ import TopBar from '../../components/TopBar.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getEntry } from 'astro:content';
-import { formatSingleDatePL, formatShortDatePL, formatDateRangePL, formatShortRangePL } from '../../utils/dateFormatters';
+import { formatSingleDatePL, formatShortDatePL, formatDateRangePL } from '../../utils/dateFormatters';
 
 // Load course data from YAML
 const courseData = await getEntry('courses', 'prowadzenie-ciazy');
@@ -28,8 +28,8 @@ const baseUrl = import.meta.env.BASE_URL;
 ---
 
 <Layout
-  title={`${course.title} - Szkolenie ${formatShortDatePL(edition.onsite.start)}-${formatShortDatePL(edition.onsite.end)} | Medykalni`}
-  description={`Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród. Szkolenie w ${place.city}, ${formatShortRangePL(edition.onsite.start, edition.onsite.end)}.`}
+  title={`${course.title} - Szkolenie ${formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")} | Medykalni`}
+  description={`Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród. Szkolenie w ${place.city}, ${formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}.`}
 >
   <TopBar />
   <Header />
@@ -89,7 +89,7 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Termin</div>
-                <div class="text-gray-900 font-bold">{formatShortDatePL(edition.onsite.start)}–{formatShortDatePL(edition.onsite.end)}</div>
+                <div class="text-gray-900 font-bold">{formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")}</div>
               </div>
               <div class="bg-white rounded-lg p-4 text-center">
                 <div class="text-primary text-sm font-semibold mb-1">Miejsce</div>
@@ -130,7 +130,7 @@ const baseUrl = import.meta.env.BASE_URL;
             <div class="bg-white rounded-2xl p-6 shadow-xl lg:sticky lg:top-24">
               <div class="mb-4">
                 <p class="text-sm text-gray-600 mb-2">Najbliższy termin:</p>
-                <p class="text-2xl font-bold text-primary mb-1">{formatShortRangePL(edition.onsite.start, edition.onsite.end)}</p>
+                <p class="text-2xl font-bold text-primary mb-1">{formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}</p>
                 <p class="text-gray-600">{place.city}, woj. {place.region}</p>
               </div>
               <div class="border-t pt-4 mb-4">
@@ -391,7 +391,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <h3 class="text-xl font-heading font-bold text-gray-900">
                   Moduł II: Prowadzenie ciąży w praktyce
                 </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatShortRangePL(edition.onsite.start, edition.onsite.end)}</p>
+                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}</p>
               </div>
               <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
@@ -664,7 +664,7 @@ const baseUrl = import.meta.env.BASE_URL;
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
                   <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
                 </svg>
-                <span class="text-gray-700">2 dni szkolenia stacjonarnego w {place.city} – <strong>{formatDateRangePL(edition.onsite.start, edition.onsite.end)}</strong></span>
+                <span class="text-gray-700">2 dni szkolenia stacjonarnego w {place.city} – <strong>{formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")}</strong></span>
               </li>
               <li class="flex items-start gap-2">
                 <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
