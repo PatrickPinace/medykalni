@@ -143,7 +143,7 @@ CTA: „Zobacz szczegóły” → landing kursu
 ​
 
 4.7. Autorytet (zespół)
-4 osoby core (jak na obecnej Medykalni): Anna Buczek, Magdalena Golba, Artur Gładosz, Anna Płaskota‑Gładosz.
+4 osoby core (jak na obecnej Medykalni): Anna Buczek, Magdalena Golba, Artur Gładosz, Anna Plaskota‑Gładosz.
 ​
 Zasady:
 

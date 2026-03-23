@@ -220,7 +220,7 @@ H2: „Poznaj naszych ekspertów”
 
 4 karty osoby, zgodne z /kurs:
 
-mgr Anna Płaskota‑Gładosz
+mgr Anna Plaskota‑Gładosz
 ​
 
 mgr Kinga Niećko
