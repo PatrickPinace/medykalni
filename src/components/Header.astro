@@ -1,76 +1,79 @@
 ---
-// Główne menu nawigacyjne
+// Główne menu nawigacyjne — Editorial Ciepły
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<header class="bg-white shadow-sm sticky top-0 z-50">
-  <nav class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="flex justify-between items-center h-20">
+<header class="sticky top-0 z-50 border-b border-line backdrop-blur-md" style="background:rgba(251,247,241,0.85);">
+  <nav class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="flex justify-between items-center h-[78px]">
       <!-- Logo -->
       <div class="shrink-0">
         <a href={baseUrl} class="flex items-center">
           <img
             src={`${baseUrl}images/medykalni-logo.png`}
             alt="Medykalni"
-            class="h-12 w-auto"
+            class="h-[42px] w-auto"
           />
         </a>
       </div>
 
       <!-- Desktop Navigation -->
-      <div class="hidden md:flex items-center space-x-8">
-        <a href={`${baseUrl}szkolenia`} class="text-gray-700 hover:text-primary transition-colors font-medium">
+      <div class="hidden md:flex items-center gap-[30px]">
+        <a href={`${baseUrl}szkolenia`} class="text-[15px] font-medium text-fg hover:text-navy transition-colors">
           Szkolenia
         </a>
 
         <!-- Dropdown Projekty -->
         <div class="relative group">
           <button
-            class="text-gray-700 hover:text-primary transition-colors font-medium flex items-center gap-1"
+            class="text-[15px] font-medium text-fg hover:text-navy transition-colors inline-flex items-center gap-[5px]"
             aria-haspopup="true"
             aria-expanded="false"
           >
             Projekty
-            <svg class="w-4 h-4 transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg class="w-[15px] h-[15px] transition-transform group-hover:rotate-180" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
             </svg>
           </button>
-          <div class="absolute left-0 mt-2 w-56 opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-200 z-50">
-            <div class="bg-white rounded-lg shadow-lg border border-gray-100 py-2">
+          <div class="absolute left-0 top-full pt-[14px] min-w-[240px] opacity-0 invisible -translate-y-1.5 group-hover:opacity-100 group-hover:visible group-hover:translate-y-0 transition-all duration-200 z-40">
+            <div class="bg-paper border border-line rounded-2xl shadow-[0_10px_26px_rgba(35,32,28,0.09)] p-2">
               <a
                 href={`${baseUrl}projekty/polozna-na-swoim`}
-                class="block px-4 py-3 text-gray-700 hover:bg-background-lighter hover:text-primary transition-colors"
+                class="flex flex-col gap-0.5 px-[14px] py-[11px] rounded-[11px] hover:bg-ivory-2 transition-colors"
               >
-                Położna na swoim
+                <span class="font-heading text-base text-ink">Położna na swoim</span>
+                <span class="text-[12.5px] text-fg-soft leading-tight">Program dla położnych na własnej praktyce</span>
               </a>
               <a
                 href={`${baseUrl}projekty/mastermind`}
-                class="block px-4 py-3 text-gray-700 hover:bg-background-lighter hover:text-primary transition-colors"
+                class="flex flex-col gap-0.5 px-[14px] py-[11px] rounded-[11px] hover:bg-ivory-2 transition-colors"
               >
-                Grupy mastermind
+                <span class="font-heading text-base text-ink">Grupy mastermind</span>
+                <span class="text-[12.5px] text-fg-soft leading-tight">Społeczność i wymiana doświadczeń</span>
               </a>
               <a
                 href={`${baseUrl}projekty/rekrutacja`}
-                class="block px-4 py-3 text-gray-700 hover:bg-background-lighter hover:text-primary transition-colors"
+                class="flex flex-col gap-0.5 px-[14px] py-[11px] rounded-[11px] hover:bg-ivory-2 transition-colors"
               >
-                Rekrutacja
+                <span class="font-heading text-base text-ink">Rekrutacja</span>
+                <span class="text-[12.5px] text-fg-soft leading-tight">Wsparcie rekrutacyjne dla placówek</span>
               </a>
             </div>
           </div>
         </div>
 
-        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="text-gray-700 hover:text-primary transition-colors font-medium">
+        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="text-[15px] font-medium text-fg hover:text-navy transition-colors">
           Dla placówek
         </a>
-        <a href={`${baseUrl}o-nas`} class="text-gray-700 hover:text-primary transition-colors font-medium">
+        <a href={`${baseUrl}o-nas`} class="text-[15px] font-medium text-fg hover:text-navy transition-colors">
           O nas
         </a>
-        <a href={`${baseUrl}kontakt`} class="text-gray-700 hover:text-primary transition-colors font-medium">
+        <a href={`${baseUrl}kontakt`} class="text-[15px] font-medium text-fg hover:text-navy transition-colors">
           Kontakt
         </a>
         <a
           href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna#zapisy`}
-          class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold"
+          class="btn btn-navy"
         >
           Zapisz się
         </a>
@@ -81,7 +84,7 @@ const baseUrl = import.meta.env.BASE_URL;
         <button
           id="mobile-menu-button"
           type="button"
-          class="text-gray-700 hover:text-primary focus:outline-none"
+          class="text-fg hover:text-navy focus:outline-none"
           aria-label="Toggle menu"
         >
           <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -94,15 +97,14 @@ const baseUrl = import.meta.env.BASE_URL;
     <!-- Mobile Navigation -->
     <div id="mobile-menu" class="hidden md:hidden pb-4">
       <div class="flex flex-col space-y-3">
-        <a href={`${baseUrl}szkolenia`} class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+        <a href={`${baseUrl}szkolenia`} class="text-fg hover:text-navy transition-colors font-medium py-2">
           Szkolenia
         </a>
 
-        <!-- Mobile Projekty Submenu -->
         <div>
           <button
             id="mobile-projekty-toggle"
-            class="w-full text-left text-gray-700 hover:text-primary transition-colors font-medium py-2 flex items-center justify-between"
+            class="w-full text-left text-fg hover:text-navy transition-colors font-medium py-2 flex items-center justify-between"
           >
             Projekty
             <svg id="mobile-projekty-icon" class="w-4 h-4 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -110,30 +112,30 @@ const baseUrl = import.meta.env.BASE_URL;
             </svg>
           </button>
           <div id="mobile-projekty-menu" class="hidden pl-4 space-y-2 mt-2">
-            <a href={`${baseUrl}projekty/polozna-na-swoim`} class="block text-gray-600 hover:text-primary transition-colors py-2">
+            <a href={`${baseUrl}projekty/polozna-na-swoim`} class="block text-fg-soft hover:text-navy transition-colors py-2">
               Położna na swoim
             </a>
-            <a href={`${baseUrl}projekty/mastermind`} class="block text-gray-600 hover:text-primary transition-colors py-2">
+            <a href={`${baseUrl}projekty/mastermind`} class="block text-fg-soft hover:text-navy transition-colors py-2">
               Grupy mastermind
             </a>
-            <a href={`${baseUrl}projekty/rekrutacja`} class="block text-gray-600 hover:text-primary transition-colors py-2">
+            <a href={`${baseUrl}projekty/rekrutacja`} class="block text-fg-soft hover:text-navy transition-colors py-2">
               Rekrutacja
             </a>
           </div>
         </div>
 
-        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="text-fg hover:text-navy transition-colors font-medium py-2">
           Dla placówek
         </a>
-        <a href={`${baseUrl}o-nas`} class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+        <a href={`${baseUrl}o-nas`} class="text-fg hover:text-navy transition-colors font-medium py-2">
           O nas
         </a>
-        <a href={`${baseUrl}kontakt`} class="text-gray-700 hover:text-primary transition-colors font-medium py-2">
+        <a href={`${baseUrl}kontakt`} class="text-fg hover:text-navy transition-colors font-medium py-2">
           Kontakt
         </a>
         <a
           href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna#zapisy`}
-          class="bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center"
+          class="btn btn-navy text-center"
         >
           Zapisz się
         </a>
@@ -143,25 +145,20 @@ const baseUrl = import.meta.env.BASE_URL;
 </header>
 
 <script>
-  // Mobile menu toggle
   const mobileMenuButton = document.getElementById('mobile-menu-button');
   const mobileMenu = document.getElementById('mobile-menu');
-
   mobileMenuButton?.addEventListener('click', () => {
     mobileMenu?.classList.toggle('hidden');
   });
 
-  // Mobile projekty submenu toggle
   const mobileProjektyToggle = document.getElementById('mobile-projekty-toggle');
   const mobileProjektyMenu = document.getElementById('mobile-projekty-menu');
   const mobileProjektyIcon = document.getElementById('mobile-projekty-icon');
-
   mobileProjektyToggle?.addEventListener('click', () => {
     mobileProjektyMenu?.classList.toggle('hidden');
     mobileProjektyIcon?.classList.toggle('rotate-180');
   });
 
-  // Close mobile menu when clicking on a link
   const mobileLinks = mobileMenu?.querySelectorAll('a');
   mobileLinks?.forEach(link => {
     link.addEventListener('click', () => {

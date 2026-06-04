@@ -1,85 +1,74 @@
 ---
-// Sekcja Rozwiązanie - dopiero teraz oferta
+// Solution — Trzy drogi wsparcia, hairline editorial cards
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<section id="dla-placowek" class="py-16 md:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-        Jak możemy pomóc
+<section id="projekty" class="py-20 md:py-24">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="text-center max-w-[680px] mx-auto mb-14">
+      <div class="eyebrow center">Jak możemy pomóc</div>
+      <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-ink">
+        Trzy drogi wsparcia
       </h2>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Karta 1: Szkolenia -->
-      <div class="bg-gradient-to-br from-primary to-primary-dark rounded-2xl p-8 text-white hover:shadow-2xl transition-shadow duration-300">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
+    <div class="grid md:grid-cols-3 gap-7">
+      <!-- 1. Szkolenia -->
+      <a href={`${baseUrl}szkolenia`} class="group bg-paper border border-line rounded-[20px] p-9 flex flex-col transition-all duration-250 hover:shadow-[0_10px_26px_rgba(35,32,28,0.09)] hover:-translate-y-1">
+        <div class="w-[54px] h-[54px] rounded-[14px] bg-ivory-2 text-teal-dark flex items-center justify-center mb-6">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+          </svg>
         </div>
-        <h3 class="text-2xl font-heading font-bold mb-4">
-          Szkolenia
-        </h3>
-        <p class="text-white/90 leading-relaxed mb-6">
-          Praktyczne warsztaty i kursy dla położnych prowadzące przez doświadczonych praktyków medycznych.
+        <h3 class="font-heading text-[24px] mb-3 text-ink">Szkolenia</h3>
+        <p class="text-[16px] leading-relaxed flex-grow mb-5 text-fg">
+          Praktyczne warsztaty i kursy dla położnych prowadzone przez doświadczonych praktyków medycznych.
         </p>
-        <a href={`${baseUrl}szkolenia`} class="inline-flex items-center font-semibold hover:text-accent transition-colors">
+        <span class="go">
           Zobacz ofertę
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
-      <!-- Karta 2: Projekty rozwojowe -->
-      <div class="bg-gradient-to-br from-accent to-accent-light rounded-2xl p-8 text-white hover:shadow-2xl transition-shadow duration-300">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
-          </div>
+      <!-- 2. Projekty rozwojowe -->
+      <a href={`${baseUrl}projekty`} class="group bg-paper border border-line rounded-[20px] p-9 flex flex-col transition-all duration-250 hover:shadow-[0_10px_26px_rgba(35,32,28,0.09)] hover:-translate-y-1">
+        <div class="w-[54px] h-[54px] rounded-[14px] bg-ivory-2 text-teal-dark flex items-center justify-center mb-6">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
+          </svg>
         </div>
-        <h3 class="text-2xl font-heading font-bold mb-4">
-          Projekty rozwojowe
-        </h3>
-        <p class="text-white/90 leading-relaxed mb-6">
+        <h3 class="font-heading text-[24px] mb-3 text-ink">Projekty rozwojowe</h3>
+        <p class="text-[16px] leading-relaxed flex-grow mb-5 text-fg">
           Długoterminowe programy wsparcia: Położna na swoim, grupy Mastermind i społeczności eksperckie.
         </p>
-        <a href={`${baseUrl}projekty`} class="inline-flex items-center font-semibold hover:text-primary transition-colors">
+        <span class="go">
           Poznaj projekty
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
-      </div>
+        </span>
+      </a>
 
-      <!-- Karta 3: Rekrutacja dla placówek -->
-      <div class="bg-gradient-to-br from-gray-700 to-gray-900 rounded-2xl p-8 text-white hover:shadow-2xl transition-shadow duration-300">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-white/20 rounded-lg flex items-center justify-center">
-            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-          </div>
+      <!-- 3. Rekrutacja -->
+      <a href={`${baseUrl}dla-placowek/rekrutacja`} class="group bg-paper border border-line rounded-[20px] p-9 flex flex-col transition-all duration-250 hover:shadow-[0_10px_26px_rgba(35,32,28,0.09)] hover:-translate-y-1">
+        <div class="w-[54px] h-[54px] rounded-[14px] bg-ivory-2 text-teal-dark flex items-center justify-center mb-6">
+          <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+          </svg>
         </div>
-        <h3 class="text-2xl font-heading font-bold mb-4">
-          Rekrutacja dla placówek
-        </h3>
-        <p class="text-white/90 leading-relaxed mb-6">
+        <h3 class="font-heading text-[24px] mb-3 text-ink">Rekrutacja dla placówek</h3>
+        <p class="text-[16px] leading-relaxed flex-grow mb-5 text-fg">
           Kompleksowa pomoc w rekrutacji specjalistów medycznych dla klinik, gabinetów i szpitali.
         </p>
-        <a href={`${baseUrl}dla-placowek/rekrutacja`} class="inline-flex items-center font-semibold hover:text-accent transition-colors">
+        <span class="go">
           Zapytaj o rekrutację
-          <svg class="w-5 h-5 ml-2" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
           </svg>
-        </a>
-      </div>
+        </span>
+      </a>
     </div>
   </div>
 </section>

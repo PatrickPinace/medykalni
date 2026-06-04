@@ -1,88 +1,60 @@
 ---
-// Sekcja "Dla kogo" - główne grupy docelowe
+// "Dla kogo" — editorial numbered rows z hairline separators
 const baseUrl = import.meta.env.BASE_URL;
+
+const rows = [
+  {
+    idx: '01',
+    title: 'Położne',
+    desc: 'Kompleksowy kurs „Prowadzenie ciąży przez położną" — od diagnozy do porodu.',
+    href: `${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna`,
+    cta: 'Zobacz kurs',
+  },
+  {
+    idx: '02',
+    title: 'Położna na swoim',
+    desc: 'Program wsparcia dla położnych prowadzących własną praktykę.',
+    href: `${baseUrl}projekty/polozna-na-swoim`,
+    cta: 'Zobacz program',
+  },
+  {
+    idx: '03',
+    title: 'Placówki medyczne',
+    desc: 'Kompleksowa pomoc rekrutacyjna dla klinik, gabinetów i szpitali.',
+    href: `${baseUrl}dla-placowek/rekrutacja`,
+    cta: 'Zobacz ofertę',
+  },
+];
 ---
 
-<section class="py-16 md:py-24 bg-background-lighter">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
+<section id="dla-kogo" class="py-20 md:py-24 bg-paper">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="max-w-[560px] mb-12">
+      <div class="eyebrow">Dla kogo</div>
+      <h2 class="font-heading text-[32px] md:text-[42px] mt-4 leading-tight tracking-tight text-ink">
         Wspieramy położne i placówki medyczne
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Oferujemy szkolenia, programy wsparcia i pomoc rekrutacyjną dopasowane do różnych potrzeb
-      </p>
     </div>
 
-    <div class="grid md:grid-cols-3 gap-8">
-      <!-- Kafelek 1: Położne - szkolenie -->
-      <div class="bg-background-lighter rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 group">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
-        </div>
-        <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
-          Położne
-        </h3>
-        <p class="text-gray-600 leading-relaxed mb-6">
-          Kompleksowy kurs "Prowadzenie ciąży przez położną" – od diagnozy do porodu
-        </p>
+    <div>
+      {rows.map((row, i) => (
         <a
-          href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna`}
-          class="block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center shadow-md hover:shadow-lg"
+          href={row.href}
+          class={`group grid grid-cols-[64px_1fr_auto] gap-6 md:gap-8 items-center py-8 border-t border-line transition-colors ${i === rows.length - 1 ? 'border-b' : ''}`}
         >
-          Zobacz kurs
-        </a>
-      </div>
-
-      <!-- Kafelek 2: Położna na swoim - projekt -->
-      <div class="bg-background-lighter rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 group">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-accent/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
-            <svg class="w-8 h-8 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-            </svg>
+          <span class="font-heading text-[30px] text-clay">{row.idx}</span>
+          <div>
+            <h3 class="font-heading text-[20px] md:text-[25px] mb-2 text-ink">{row.title}</h3>
+            <p class="text-[15px] md:text-[16.5px] leading-relaxed max-w-[46em] text-fg">{row.desc}</p>
           </div>
-        </div>
-        <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
-          Położna na swoim
-        </h3>
-        <p class="text-gray-600 leading-relaxed mb-6">
-          Program wsparcia dla położnych prowadzących własną praktykę
-        </p>
-        <a
-          href={`${baseUrl}projekty/polozna-na-swoim`}
-          class="block bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent-light transition-colors font-semibold text-center shadow-md hover:shadow-lg"
-        >
-          Zobacz program
-        </a>
-      </div>
-
-      <!-- Kafelek 3: Placówki medyczne - rekrutacja -->
-      <div class="bg-background-lighter rounded-2xl p-8 hover:shadow-xl transition-shadow duration-300 group">
-        <div class="mb-6">
-          <div class="w-16 h-16 bg-primary/10 rounded-xl flex items-center justify-center mb-4 group-hover:bg-primary/20 transition-colors">
-            <svg class="w-8 h-8 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+          <span class="go whitespace-nowrap hidden sm:inline-flex">
+            {row.cta}
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
             </svg>
-          </div>
-        </div>
-        <h3 class="text-2xl font-heading font-bold text-gray-900 mb-4">
-          Placówki medyczne
-        </h3>
-        <p class="text-gray-600 leading-relaxed mb-6">
-          Kompleksowa pomoc rekrutacyjna dla klinik, gabinetów i szpitali
-        </p>
-        <a
-          href={`${baseUrl}dla-placowek/rekrutacja`}
-          class="block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center shadow-md hover:shadow-lg"
-        >
-          Zobacz ofertę
+          </span>
         </a>
-      </div>
+      ))}
     </div>
   </div>
 </section>

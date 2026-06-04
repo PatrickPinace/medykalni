@@ -1,87 +1,41 @@
 ---
-// Sekcja Problem - najbardziej konwertująca
+// Problem — editorial dash bullets na ivory-2 + pull quote
+const items = [
+  'Brak pewności w pracy z pacjentem',
+  'Chaos organizacyjny w gabinecie',
+  'Trudności z personelem',
+  'Brak standardów pracy',
+  'Stres i wypalenie zawodowe',
+  'Brak czasu na rozwój',
+];
 ---
 
-<section class="py-16 md:py-24 bg-background-light">
-  <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
+<section class="py-20 md:py-24 bg-ivory-2">
+  <div class="max-w-[820px] mx-auto px-6 lg:px-12">
+    <div class="text-center max-w-[680px] mx-auto mb-14">
+      <div class="eyebrow center">Rozumiemy to</div>
+      <h2 class="font-heading text-[28px] md:text-[40px] lg:text-[44px] mt-4 leading-tight tracking-tight text-ink">
         Z czym najczęściej zgłaszają się do nas medycy i właściciele placówek?
       </h2>
     </div>
 
-    <div class="space-y-4">
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
+    <div class="grid sm:grid-cols-2 gap-x-12 gap-y-0 max-w-[900px] mx-auto">
+      {items.map((item) => (
+        <div class="flex gap-4 items-baseline py-5 border-b border-line">
+          <span class="text-clay font-heading text-[20px] shrink-0 leading-none">—</span>
+          <p class="text-[16px] md:text-[18px] text-ink">{item}</p>
         </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Brak pewności w pracy z pacjentem
-        </p>
-      </div>
-
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
-        </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Chaos organizacyjny w gabinecie
-        </p>
-      </div>
-
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
-        </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Trudności z personelem
-        </p>
-      </div>
-
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
-        </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Brak standardów pracy
-        </p>
-      </div>
-
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
-        </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Stres i wypalenie zawodowe
-        </p>
-      </div>
-
-      <div class="bg-white rounded-lg p-6 shadow-sm hover:shadow-md transition-shadow flex items-start gap-4">
-        <div class="shrink-0">
-          <div class="w-10 h-10 bg-red-100 rounded-full flex items-center justify-center">
-            <span class="text-red-600 font-bold">•</span>
-          </div>
-        </div>
-        <p class="text-lg text-gray-700 pt-1">
-          Brak czasu na rozwój
-        </p>
-      </div>
+      ))}
     </div>
 
-    <div class="text-center mt-12">
-      <p class="text-xl text-primary font-semibold italic">
-        "Oni mnie rozumieją"
-      </p>
+    <div class="text-center mt-14">
+      <q class="font-heading italic text-[28px] md:text-[38px] text-navy leading-[1.25]">
+        „Oni mnie rozumieją"
+      </q>
     </div>
   </div>
 </section>
+
+<style>
+  q::before, q::after { content: none; }
+</style>

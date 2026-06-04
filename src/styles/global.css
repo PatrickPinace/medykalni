@@ -1,16 +1,48 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Plus+Jakarta+Sans:wght@500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Inter:wght@400;500;600;700&display=swap');
 @import "tailwindcss";
 
 @theme {
+  /* === Brand === */
+  --color-cobalt: #004AAD;
+  --color-navy: #1E3A5F;
+  --color-navy-dark: #163047;
   --color-primary: #1E3A5F;
   --color-primary-dark: #163047;
-  --color-accent: #2FA4A9;
-  --color-accent-light: #5BC0C5;
-  --color-background-light: #F8FAFC;
-  --color-background-lighter: #EEF2F6;
 
-  --font-sans: 'Inter', system-ui, sans-serif;
-  --font-heading: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --color-teal: #2FA4A9;
+  --color-teal-dark: #1F7E82;
+  --color-teal-soft: #DCEEEE;
+
+  --color-clay: #C77B62;
+  --color-clay-hover: #B16A52;
+  --color-clay-soft: #EBD7CD;
+
+  --color-pink: #D6006C;
+  --color-pink-light: #F2D6E5;
+
+  /* === Warm neutrals (ivory paper ramp) === */
+  --color-ink: #23201C;
+  --color-fg-1: #3A352F;
+  --color-fg: #4A453E;
+  --color-fg-soft: #7A736A;
+  --color-line: #E7DECF;
+  --color-line-soft: #F0E9DD;
+
+  --color-paper: #FFFFFF;
+  --color-ivory: #FBF7F1;
+  --color-ivory-2: #F4ECE1;
+  --color-bg-dark: #23201C;
+
+  /* Semantic */
+  --color-success: #2F8A5B;
+  --color-success-bg: #DCEFE2;
+  --color-danger: #C0392B;
+  --color-danger-bg: #F7E2DE;
+
+  /* Type */
+  --font-sans: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-heading: 'Spectral', Georgia, 'Times New Roman', serif;
+  --font-serif: 'Spectral', Georgia, serif;
 }
 
 * {
@@ -23,9 +55,93 @@ html {
 
 body {
   font-family: var(--font-sans);
-  color: #1f2937;
+  color: var(--color-fg);
+  background: var(--color-ivory);
+  -webkit-font-smoothing: antialiased;
 }
 
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-heading);
+  color: var(--color-ink);
+  font-weight: 500;
+  line-height: 1.1;
+  letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+
+em {
+  font-style: italic;
+  color: var(--color-teal-dark);
+}
+
+/* Eyebrow label with clay accent dash */
+.eyebrow {
+  font-family: var(--font-sans);
+  font-size: 13px;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--color-teal-dark);
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+}
+.eyebrow::before {
+  content: "";
+  width: 28px;
+  height: 1.5px;
+  background: var(--color-clay);
+}
+.eyebrow.center { justify-content: center; }
+
+/* Buttons */
+.btn {
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: 15px;
+  border: none;
+  cursor: pointer;
+  border-radius: 9999px;
+  padding: 13px 26px;
+  transition: all 0.2s;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  text-decoration: none;
+}
+.btn-navy { background: var(--color-navy); color: #fff; }
+.btn-navy:hover { background: var(--color-navy-dark); }
+.btn-teal { background: var(--color-teal); color: #fff; }
+.btn-teal:hover { background: var(--color-teal-dark); }
+.btn-clay { background: var(--color-clay); color: #fff; }
+.btn-clay:hover { background: var(--color-clay-hover); }
+.btn-ghost {
+  background: transparent;
+  color: var(--color-navy);
+  border: 1.5px solid var(--color-navy);
+}
+.btn-ghost:hover { background: var(--color-navy); color: #fff; }
+.btn-white { background: #fff; color: var(--color-clay); }
+.btn-white:hover { background: var(--color-ivory); }
+.btn-outline-w {
+  background: transparent;
+  color: #fff;
+  border: 1.5px solid #fff;
+}
+.btn-outline-w:hover { background: #fff; color: var(--color-clay); }
+
+/* "Go" link with arrow that nudges on hover */
+.go {
+  color: var(--color-navy);
+  font-weight: 600;
+  font-size: 15px;
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  transition: all 0.2s;
+}
+.go:hover, .group:hover .go {
+  gap: 13px;
+  color: var(--color-teal-dark);
 }

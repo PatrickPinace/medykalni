@@ -1,95 +1,46 @@
 ---
-// Sekcja "Jak wygląda współpraca"
+// Process — navy bg, clay numbers, hairline tops
+const steps = [
+  {
+    n: '01',
+    title: 'Rozmowa wstępna',
+    desc: 'Poznajemy Twoje potrzeby i określamy obszary wsparcia.',
+  },
+  {
+    n: '02',
+    title: 'Dobór rozwiązania',
+    desc: 'Proponujemy rozwiązanie dostosowane do Twoich celów.',
+  },
+  {
+    n: '03',
+    title: 'Szkolenie / wdrożenie',
+    desc: 'Realizujemy program lub wdrażamy procesy w placówce.',
+  },
+  {
+    n: '04',
+    title: 'Opieka po szkoleniu',
+    desc: 'Wspieramy w praktycznym zastosowaniu wiedzy.',
+  },
+];
 ---
 
-<section class="py-16 md:py-24 bg-white">
-  <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-        Jak wygląda współpraca
+<section class="py-20 md:py-24 bg-navy text-white">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="text-center max-w-[680px] mx-auto mb-14">
+      <div class="eyebrow center" style="color:#9fd3d5;">Współpraca</div>
+      <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-white">
+        Przejrzysty proces, krok po kroku
       </h2>
-      <p class="text-xl text-gray-600">
-        Przejrzysty proces od pierwszego kontaktu do realizacji
-      </p>
     </div>
 
-    <div class="relative">
-      <!-- Timeline line (hidden on mobile) -->
-      <div class="hidden md:block absolute top-1/2 left-0 right-0 h-1 bg-gradient-to-r from-primary via-accent to-primary transform -translate-y-1/2" aria-hidden="true"></div>
-
-      <div class="grid md:grid-cols-4 gap-8 relative">
-        <!-- Krok 1 -->
-        <div class="relative">
-          <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
-            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-              1
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Rozmowa wstępna
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Poznajemy Twoje potrzeby i określamy obszary wsparcia
-            </p>
-          </div>
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-7">
+      {steps.map((step) => (
+        <div class="pt-6 border-t-2 border-white/20">
+          <div class="font-heading text-[40px] text-clay leading-none mb-4">{step.n}</div>
+          <h3 class="font-heading text-[21px] text-white mb-3">{step.title}</h3>
+          <p class="text-[14.5px] leading-[1.55] text-white/75">{step.desc}</p>
         </div>
-
-        <!-- Krok 2 -->
-        <div class="relative">
-          <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
-            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-              2
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Dobór rozwiązania
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Proponujemy najlepsze rozwiązanie dostosowane do Twoich celów
-            </p>
-          </div>
-        </div>
-
-        <!-- Krok 3 -->
-        <div class="relative">
-          <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
-            <div class="w-16 h-16 bg-primary rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-              3
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Szkolenie / Wdrożenie
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Realizujemy program szkoleniowy lub wdrażamy procesy w placówce
-            </p>
-          </div>
-        </div>
-
-        <!-- Krok 4 -->
-        <div class="relative">
-          <div class="bg-white p-6 rounded-2xl shadow-lg hover:shadow-xl transition-shadow text-center">
-            <div class="w-16 h-16 bg-accent rounded-full flex items-center justify-center text-white text-2xl font-bold mx-auto mb-4">
-              4
-            </div>
-            <h3 class="text-xl font-heading font-bold text-gray-900 mb-3">
-              Opieka po szkoleniu
-            </h3>
-            <p class="text-gray-600 text-sm">
-              Wspieramy w praktycznym zastosowaniu wiedzy i rozwiązywaniu wątpliwości
-            </p>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <div class="text-center mt-12">
-      <p class="text-lg text-gray-600 mb-6">
-        Chcesz dowiedzieć się więcej o procesie współpracy?
-      </p>
-      <a
-        href="#umow-rozmowe"
-        class="inline-block bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors font-semibold shadow-lg hover:shadow-xl"
-      >
-        Umów bezpłatną rozmowę
-      </a>
+      ))}
     </div>
   </div>
 </section>

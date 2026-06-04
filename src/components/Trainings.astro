@@ -1,127 +1,84 @@
 ---
-// Sekcja "Nasze szkolenia" - produktowa (NIE blog)
+// Trainings — feature kursu w editorial card + "wkrótce" cards
+import { getEntry } from 'astro:content';
 const baseUrl = import.meta.env.BASE_URL;
+const course = await getEntry('courses', 'prowadzenie-ciazy');
+const c = course?.data;
 ---
 
-<section class="py-16 md:py-24 bg-white">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-        Nasze szkolenia
-      </h2>
-      <p class="text-xl text-gray-600">
-        Specjalistyczne programy edukacyjne dla profesjonalistów medycznych
-      </p>
-    </div>
+<section id="kurs" class="py-20 md:py-24 bg-ivory-2">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <!-- Feature card -->
+    <div class="grid lg:grid-cols-2 gap-0 bg-paper border border-line rounded-[28px] overflow-hidden">
+      <!-- Lewa: zdjęcie / placeholder -->
+      <div
+        class="min-h-[420px] flex flex-col items-center justify-center gap-3.5 text-clay"
+        style="background:linear-gradient(160deg,#EBD7CD,#F4ECE1);"
+      >
+        <svg class="w-14 h-14" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.4" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+        </svg>
+        <span class="font-sans text-[13px] font-semibold tracking-wider uppercase text-fg-soft">Miejsce na zdjęcie ze szkolenia</span>
+      </div>
 
-    <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-      <!-- Karta szkolenia 1: Prowadzenie ciąży przez położną -->
-      <div class="bg-background-lighter rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group">
-        <div class="aspect-video bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-          <div class="text-white text-center p-6">
-            <svg class="w-16 h-16 mx-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
+      <!-- Prawa: treść -->
+      <div class="p-9 md:p-12">
+        <div class="flex gap-2 mb-4">
+          <span class="font-sans font-semibold text-[12.5px] px-3 py-1 rounded-full bg-ivory-2 text-teal-dark">dla położnych</span>
+          <span class="font-sans font-semibold text-[12.5px] px-3 py-1 rounded-full bg-ivory-2 text-teal-dark">stacjonarne + online</span>
+        </div>
+        <h2 class="font-heading text-[28px] md:text-[36px] mb-4 leading-tight text-ink">
+          {c?.title || 'Prowadzenie ciąży przez położną'}
+        </h2>
+        <p class="text-[16px] md:text-[17px] leading-[1.6] mb-7 text-fg">
+          Kompleksowy program modułowy — od diagnozy, przez kinesiotaping i suplementację, po mentoring i kontraktowanie z NFZ. Materiały i certyfikat w cenie.
+        </p>
+
+        <!-- Tiers -->
+        <div class="flex gap-2.5 mb-7">
+          <div class="flex-1 border border-line rounded-[14px] p-4 text-center">
+            <div class="font-sans text-[12px] font-semibold tracking-wider uppercase text-fg-soft">Basic</div>
+            <div class="font-heading text-[20px] md:text-[24px] text-navy mt-1.5">{c?.pricing.basic.toLocaleString('pl-PL')} zł</div>
+          </div>
+          <div class="flex-1 border border-line rounded-[14px] p-4 text-center">
+            <div class="font-sans text-[12px] font-semibold tracking-wider uppercase text-fg-soft">Standard</div>
+            <div class="font-heading text-[20px] md:text-[24px] text-navy mt-1.5">{c?.pricing.standard.toLocaleString('pl-PL')} zł</div>
+          </div>
+          <div class="flex-1 border border-line rounded-[14px] p-4 text-center">
+            <div class="font-sans text-[12px] font-semibold tracking-wider uppercase text-fg-soft">Premium</div>
+            <div class="font-heading text-[20px] md:text-[24px] text-navy mt-1.5">{c?.pricing.premium.toLocaleString('pl-PL')} zł</div>
           </div>
         </div>
-        <div class="p-6">
-          <div class="mb-4">
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-              Prowadzenie ciąży przez położną
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold">
-                dla położnych
-              </span>
-              <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">
-                stacjonarne + online
-              </span>
-            </div>
-          </div>
-          <p class="text-gray-600 mb-4 leading-relaxed">
-            Kompleksowy program edukacyjny dla położnych prowadzących ciąże fizjologiczne – od diagnozy do porodu.
-          </p>
-          <div class="mb-6">
-            <p class="text-2xl font-bold text-primary">od 1499 zł</p>
-            <p class="text-sm text-gray-500">3 pakiety do wyboru</p>
-          </div>
-          <a
-            href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna`}
-            class="block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center"
-          >
+
+        <div class="flex gap-3 flex-wrap items-center">
+          <a href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna#zapisy`} class="btn btn-clay">
+            Zapisz się na kurs
+          </a>
+          <a class="go" href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna`}>
             Zobacz szczegóły
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+            </svg>
           </a>
         </div>
       </div>
+    </div>
 
-      <!-- Karta szkolenia 2: Placeholder dla kolejnych szkoleń -->
-      <div class="bg-background-lighter rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group">
-        <div class="aspect-video bg-gradient-to-br from-accent to-primary flex items-center justify-center">
-          <div class="text-white text-center p-6">
-            <svg class="w-16 h-16 mx-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
+    <!-- "Wkrótce" cards -->
+    <div class="grid md:grid-cols-2 gap-6 mt-8">
+      <div class="border border-dashed border-line rounded-[18px] p-7 flex justify-between items-center gap-5">
+        <div>
+          <h4 class="font-heading text-[20px] mb-1.5 text-ink">Komunikacja w gabinecie</h4>
+          <p class="text-[14.5px] leading-[1.5] text-fg">Techniki rozmowy z pacjentem w trudnych sytuacjach.</p>
         </div>
-        <div class="p-6">
-          <div class="mb-4">
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-              Komunikacja w gabinecie
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">
-                dla lekarzy
-              </span>
-              <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold">
-                warsztat praktyczny
-              </span>
-            </div>
-          </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Praktyczne techniki komunikacji z pacjentem w trudnych sytuacjach klinicznych i konfliktach.
-          </p>
-          <button
-            disabled
-            class="block bg-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold text-center w-full cursor-not-allowed"
-          >
-            Wkrótce
-          </button>
-        </div>
+        <span class="font-sans text-[12px] font-semibold text-fg-soft border border-line rounded-full px-3.5 py-1.5 whitespace-nowrap">Wkrótce</span>
       </div>
-
-      <!-- Karta szkolenia 3: Placeholder -->
-      <div class="bg-background-lighter rounded-2xl overflow-hidden hover:shadow-xl transition-shadow group">
-        <div class="aspect-video bg-gradient-to-br from-primary to-accent flex items-center justify-center">
-          <div class="text-white text-center p-6">
-            <svg class="w-16 h-16 mx-auto opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-          </div>
+      <div class="border border-dashed border-line rounded-[18px] p-7 flex justify-between items-center gap-5">
+        <div>
+          <h4 class="font-heading text-[20px] mb-1.5 text-ink">Zarządzanie gabinetami</h4>
+          <p class="text-[14.5px] leading-[1.5] text-fg">Zespół, procesy i finanse w placówce medycznej.</p>
         </div>
-        <div class="p-6">
-          <div class="mb-4">
-            <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2 group-hover:text-primary transition-colors">
-              Zarządzanie gabinetami
-            </h3>
-            <div class="flex flex-wrap gap-2 mb-3">
-              <span class="inline-block bg-accent/10 text-accent px-3 py-1 rounded-full text-sm font-semibold">
-                dla właścicieli
-              </span>
-              <span class="inline-block bg-primary/10 text-primary px-3 py-1 rounded-full text-sm font-semibold">
-                kurs menedżerski
-              </span>
-            </div>
-          </div>
-          <p class="text-gray-600 mb-6 leading-relaxed">
-            Skuteczne zarządzanie zespołem medycznym, procesami i finansami w placówce zdrowia.
-          </p>
-          <button
-            disabled
-            class="block bg-gray-300 text-gray-600 px-6 py-3 rounded-lg font-semibold text-center w-full cursor-not-allowed"
-          >
-            Wkrótce
-          </button>
-        </div>
+        <span class="font-sans text-[12px] font-semibold text-fg-soft border border-line rounded-full px-3.5 py-1.5 whitespace-nowrap">Wkrótce</span>
       </div>
     </div>
   </div>

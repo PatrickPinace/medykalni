@@ -4,1096 +4,455 @@ import TopBar from '../../components/TopBar.astro';
 import Header from '../../components/Header.astro';
 import Footer from '../../components/Footer.astro';
 import { getEntry } from 'astro:content';
-import { formatSingleDatePL, formatShortDatePL, formatDateRangePL } from '../../utils/dateFormatters';
+import { formatDateRangePL } from '../../utils/dateFormatters';
 
-// Load course data from YAML
 const courseData = await getEntry('courses', 'prowadzenie-ciazy');
-if (!courseData) {
-  throw new Error('Course data not found');
-}
+if (!courseData) throw new Error('Course data not found');
 
 const course = courseData.data;
 const activeEdition = course.editions.find(e => e.active);
-if (!activeEdition) {
-  throw new Error('No active edition found');
-}
+if (!activeEdition) throw new Error('No active edition found');
 
-// Extract data for easy use
 const pricing = course.pricing;
 const place = course.place;
 const edition = activeEdition;
 const GOOGLE_FORM_URL = edition.signupUrl;
 
 const baseUrl = import.meta.env.BASE_URL;
+
+const formatPrice = (n: number) => n.toLocaleString('pl-PL') + ' zł';
+
+const modules = [
+  {
+    id: 'I',
+    title: 'Podstawy prowadzenia ciąży przez położną',
+    sub: null,
+    icon: 'M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z',
+    items: [
+      'Wprowadzenie do roli położnej w prowadzeniu ciąży',
+      'Obowiązki, zakres kompetencji i odpowiedzialność prawna',
+      'Dokumentacja medyczna i standardy prowadzenia zapisów',
+      'Praktyczne przykłady przypadków i analiza dokumentacji',
+    ],
+  },
+  {
+    id: 'II',
+    title: 'Prowadzenie ciąży w praktyce',
+    sub: 'Symulacja wizyty w gabinecie położnej',
+    icon: 'M19 14l-7 7m0 0l-7-7m7 7V3',
+    items: [
+      'Wywiad medyczny i ocena stanu pacjentki',
+      'Badania fizykalne i interpretacja wyników',
+      'Budowanie relacji i komunikacja z pacjentką',
+      'Pokazowe badanie USG z omówieniem wyników',
+      'Ćwiczenia praktyczne w małych grupach',
+    ],
+  },
+  {
+    id: 'III',
+    title: 'Kinesiotaping w ciąży',
+    sub: 'Zajęcia: mgr Katarzyna Soja-Chydzińska',
+    icon: 'M14.121 14.121L19 19m-7-7l7-7m-7 7l-2.879 2.879M12 12L9.121 9.121',
+    items: [
+      'Zasady działania i wskazania w ciąży',
+      'Praktyczne techniki aplikacji w łagodzeniu dolegliwości',
+      'Omówienie przypadków i indywidualne konsultacje',
+    ],
+  },
+  {
+    id: 'IV',
+    title: 'Suplementacja, odżywianie i interpretacja badań',
+    sub: '4 spotkania online: dr Barbara Piekło',
+    icon: 'M3 3v18h18M18.7 8l-5.1 5.2-2.8-2.7L7 14.3',
+    items: [
+      'Dieta i suplementacja w ciąży — teoria i praktyka',
+      'Analiza wyników badań laboratoryjnych i wnioski',
+      'Dostęp do nagrań wideo ze wszystkich spotkań',
+    ],
+  },
+  {
+    id: 'V',
+    title: 'Mentoring i wsparcie w prowadzeniu ciąży',
+    sub: null,
+    icon: 'M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z',
+    items: [
+      'Wsparcie w pierwszych krokach zawodowych położnej',
+      'Dostęp do zamkniętej grupy uczestniczek i ekspertów',
+      'Spotkania online przez <b>12 miesięcy</b> + konsultacje trudnych przypadków',
+    ],
+  },
+  {
+    id: 'VI',
+    title: 'Kontraktowanie z NFZ i wsparcie prawno-biznesowe',
+    sub: null,
+    icon: 'M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z',
+    items: [
+      'Proces kontraktowania świadczeń prowadzenia ciąży w NFZ',
+      'Wsparcie konsultanta biznesowego i prawnika przy kontrakcie',
+      'Praktyczne wskazówki dotyczące negocjacji i formalności',
+    ],
+  },
+];
+
+const experts = [
+  {
+    name: 'mgr Anna Plaskota-Gładosz',
+    role: 'Położna / CDL',
+    desc: 'Położna z ponad 10-letnim doświadczeniem, specjalistka w prowadzeniu ciąży fizjologicznej.',
+    photo: 'anna-plaskota-gladosz.jpg',
+    initials: null,
+  },
+  {
+    name: 'mgr Kinga Niećko',
+    role: 'Położna / NFZ',
+    desc: 'Jako jedna z pierwszych w Małopolsce prowadzi ciążę fizjologiczną w ramach umowy z NFZ.',
+    photo: null,
+    initials: 'KN',
+  },
+  {
+    name: 'dr Barbara Piekło',
+    role: 'Dietetyk kliniczny',
+    desc: 'Dietetyk kliniczny i psychodietetyk — suplementacja oraz interpretacja badań w ciąży.',
+    photo: null,
+    initials: 'BP',
+  },
+  {
+    name: 'mgr Katarzyna Soja-Chydzińska',
+    role: 'Fizjoterapeutka',
+    desc: 'Fizjoterapeutka uroginekologiczna — ekspertka w kinesiotapingu w ciąży.',
+    photo: null,
+    initials: 'KS',
+  },
+];
 ---
 
 <Layout
-  title={`${course.title} - Szkolenie ${formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")} | Medykalni`}
-  description={`Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród. Szkolenie w ${place.city}, ${formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}.`}
+  title={`${course.title} — Kurs | Medykalni`}
+  description={`Kompleksowy kurs modułowy dla położnych. Szkolenie w ${place.city}, ${formatDateRangePL(edition.onsite.start, edition.onsite.end, 'long')}.`}
 >
   <TopBar />
   <Header />
 
   <main>
-    <!-- Hero kursu (above the fold) -->
-    <section class="bg-gradient-to-b from-background-lighter to-white pt-8 pb-12 md:pt-12 md:pb-16">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <!-- Breadcrumb -->
-        <nav class="mb-6 text-sm">
-          <ol class="flex items-center gap-2 text-gray-600">
-            <li><a href={`${baseUrl}szkolenia`} class="hover:text-primary">Szkolenia</a></li>
-            <li>→</li>
-            <li class="text-gray-900 font-semibold">{course.title}</li>
-          </ol>
-        </nav>
+    <!-- Breadcrumb -->
+    <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+      <div class="text-[14px] text-fg-soft pt-9">
+        <a href={baseUrl} class="hover:text-navy transition-colors">Medykalni</a>
+        <span class="mx-1">·</span>
+        <a href={`${baseUrl}szkolenia`} class="hover:text-navy transition-colors">Szkolenia</a>
+        <span class="mx-1">·</span>
+        <span class="text-clay">{course.title}</span>
+      </div>
+    </div>
 
-        <div class="grid lg:grid-cols-3 gap-8">
-          <!-- Left column: Main content -->
-          <div class="lg:col-span-2">
-            <h1 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-              {course.title}
+    <!-- HERO -->
+    <section class="pt-8 pb-20 md:pb-24">
+      <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+        <div class="grid md:grid-cols-[1.05fr_0.95fr] gap-10 md:gap-15 items-center">
+          <div>
+            <div class="flex gap-2 mb-6 flex-wrap">
+              <span class="font-sans font-semibold text-[12.5px] px-3 py-1 rounded-full bg-ivory-2 text-teal-dark">dla położnych</span>
+              <span class="font-sans font-semibold text-[12.5px] px-3 py-1 rounded-full bg-ivory-2 text-teal-dark">stacjonarne + online</span>
+              <span class="font-sans font-semibold text-[12.5px] px-3 py-1 rounded-full bg-ivory-2 text-teal-dark">certyfikat</span>
+            </div>
+            <h1 class="font-heading text-[40px] md:text-[52px] lg:text-[58px] leading-[1.1] tracking-tight mb-6 text-ink">
+              Prowadź ciążę pacjentek z <em>pewnością</em> i profesjonalizmem
             </h1>
-
-            <p class="text-xl md:text-2xl text-gray-700 mb-8 leading-relaxed">
-              Zdobądź wiedzę i narzędzia, aby samodzielnie prowadzić pacjentki w ciąży – od pierwszej wizyty aż po poród.
+            <p class="text-[18px] md:text-[19px] leading-[1.6] max-w-[32em] mb-8 text-fg">
+              Kompleksowy kurs modułowy dla położnych, które chcą prowadzić ciąże fizjologiczne we własnej praktyce — zgodnie z aktualnymi standardami i przepisami prawa.
             </p>
-
-            <!-- Czy to brzmi znajomo? -->
-            <div class="bg-white rounded-xl p-6 mb-8 border-l-4 border-accent">
-              <h2 class="text-lg font-heading font-bold text-gray-900 mb-4">
-                Czy to brzmi znajomo?
-              </h2>
-              <ul class="space-y-3">
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-700">Chcesz prowadzić ciążę, ale nie wiesz od czego zacząć?</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-700">Myślisz o prowadzeniu ciąży na NFZ?</span>
-                </li>
-                <li class="flex items-start gap-3">
-                  <svg class="w-6 h-6 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                  </svg>
-                  <span class="text-gray-700">Rozważasz prywatne prowadzenie ciąży?</span>
-                </li>
-              </ul>
+            <div class="flex flex-wrap gap-3.5">
+              <a href="#pakiety" class="btn btn-clay">Zapisz się na kurs</a>
+              <a href="#pakiety" class="btn btn-ghost">Zobacz pakiety</a>
             </div>
 
-            <!-- Meta kursu - grid -->
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-              <div class="bg-white rounded-lg p-4 text-center">
-                <div class="text-primary text-sm font-semibold mb-1">Termin</div>
-                <div class="text-gray-900 font-bold">{formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")}</div>
-              </div>
-              <div class="bg-white rounded-lg p-4 text-center">
-                <div class="text-primary text-sm font-semibold mb-1">Miejsce</div>
-                <div class="text-gray-900 font-bold">{place.city}</div>
-                <div class="text-xs text-gray-600">{place.region}</div>
-              </div>
-              <div class="bg-white rounded-lg p-4 text-center">
-                <div class="text-primary text-sm font-semibold mb-1">Forma</div>
-                <div class="text-gray-900 font-bold text-sm">{course.format}</div>
-              </div>
-              <div class="bg-white rounded-lg p-4 text-center">
-                <div class="text-primary text-sm font-semibold mb-1">Cena</div>
-                <div class="text-gray-900 font-bold">od {pricing.basic} {pricing.currency}</div>
-              </div>
-            </div>
-
-            <!-- CTA buttons -->
-            <div class="flex flex-col sm:flex-row gap-4">
-              <a
-                href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener"
-                class="flex-1 bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors font-bold text-center text-lg shadow-lg"
-              >
-                Zapisz się teraz
-              </a>
-              <a
-                href="#pakiety"
-                class="flex-1 border-2 border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-white transition-colors font-bold text-center text-lg"
-              >
-                Zobacz pakiety
-              </a>
-            </div>
-          </div>
-
-          <!-- Right column: Sticky box -->
-          <div class="lg:col-span-1">
-            <div class="bg-white rounded-2xl p-6 shadow-xl lg:sticky lg:top-24">
-              <div class="mb-4">
-                <p class="text-sm text-gray-600 mb-2">Najbliższy termin:</p>
-                <p class="text-2xl font-bold text-primary mb-1">{formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}</p>
-                <p class="text-gray-600">{place.city}, woj. {place.region}</p>
-              </div>
-              <div class="border-t pt-4 mb-4">
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-600">Forma:</span>
-                  <span class="font-semibold">{course.format}</span>
-                </div>
-                <div class="flex justify-between items-center mb-2">
-                  <span class="text-gray-600">Cena:</span>
-                  <span class="font-semibold text-primary">od {pricing.basic} {pricing.currency}</span>
-                </div>
-              </div>
-              <a
-                href={GOOGLE_FORM_URL}
-                target="_blank"
-                rel="noopener"
-                class="block bg-accent text-white px-6 py-4 rounded-lg hover:bg-accent-light transition-colors font-bold text-center shadow-md hover:shadow-lg text-lg mb-3"
-              >
-                Zapisz się teraz
-              </a>
-              <a
-                href="#pakiety"
-                class="block text-center text-primary hover:text-primary-dark font-semibold"
-              >
-                Zobacz wszystkie pakiety →
-              </a>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Dla kogo jest kurs -->
-    <section class="py-16 md:py-24 bg-white">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-6 text-center">
-          Dla położnych, które chcą poszerzyć swoje kompetencje
-        </h2>
-
-        <div class="prose prose-lg max-w-none text-gray-600 mb-8">
-          <p class="text-lg leading-relaxed mb-4">
-            Kurs dla położnych prowadzących lub planujących prowadzić ciąże zgodnie ze standardami i prawem. Nauczysz się wszystkiego, co potrzebne do samodzielnego prowadzenia pacjentek.
-          </p>
-          <p class="text-lg leading-relaxed">
-            Praktyczne rozwiązania do zastosowania od razu – żadnej teorii z podręcznika, tylko sprawdzone metody z codziennej pracy.
-          </p>
-        </div>
-
-        <div class="bg-background-lighter rounded-2xl p-8">
-          <h3 class="text-xl font-heading font-bold text-gray-900 mb-6">
-            Ten kurs jest dla Ciebie, jeśli jesteś:
-          </h3>
-          <div class="grid md:grid-cols-2 gap-4">
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną zaczynającą prowadzenie ciąży</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną POZ chcącą rozszerzyć kompetencje</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną potrzebującą uporządkować dokumentację</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną planującą kontraktowanie z NFZ</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną rozwijającą prywatną praktykę</span>
-            </div>
-            <div class="flex items-start gap-3">
-              <svg class="w-6 h-6 text-accent shrink-0 mt-1" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Położną chcącą aktualizować swoją wiedzę</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="text-center mt-8">
-          <a
-            href={GOOGLE_FORM_URL}
-            target="_blank"
-            rel="noopener"
-            class="inline-block bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold"
-          >
-            Zapisz się na kurs
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Co zyskasz (outcomes) -->
-    <section class="py-16 md:py-24 bg-background-lighter">
-      <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
-          Co zyskasz po kursie
-        </h2>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-          <!-- Outcome 1 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              Standardy i dokumentacja
-            </h3>
-            <p class="text-gray-600">
-              Poznasz standardy prowadzenia ciąży, dokumentację medyczną i zakres odpowiedzialności prawnej położnej.
-            </p>
-          </div>
-
-          <!-- Outcome 2 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              Prowadzenie wizyty
-            </h3>
-            <p class="text-gray-600">
-              Przećwiczysz symulacje wizyt, wywiad, badania i komunikację z pacjentkami w różnych sytuacjach.
-            </p>
-          </div>
-
-          <!-- Outcome 3 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              Kinesiotaping w ciąży
-            </h3>
-            <p class="text-gray-600">
-              Praktyczne zajęcia z kinesiotapingu w ciąży – techniki do wykorzystania w pracy z pacjentkami.
-            </p>
-          </div>
-
-          <!-- Outcome 4 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9.75 17L9 20l-1 1h8l-1-1-.75-3M3 13h18M5 17h14a2 2 0 002-2V5a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              4 spotkania online + nagrania
-            </h3>
-            <p class="text-gray-600">
-              Dostęp do dodatkowych spotkań online na temat suplementacji, odżywiania i interpretacji badań + nagrania.
-            </p>
-          </div>
-
-          <!-- Outcome 5 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-primary/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              Mentoring przez 12 miesięcy
-            </h3>
-            <p class="text-gray-600">
-              Grupa mentoringowa i regularne spotkania online przez cały rok po szkoleniu – nie zostawiamy Cię samej.
-            </p>
-          </div>
-
-          <!-- Outcome 6 -->
-          <div class="bg-white rounded-xl p-6">
-            <div class="w-12 h-12 bg-accent/10 rounded-lg flex items-center justify-center mb-4">
-              <svg class="w-6 h-6 text-accent" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-              </svg>
-            </div>
-            <h3 class="text-lg font-heading font-bold text-gray-900 mb-2">
-              Kontraktowanie NFZ + wsparcie biznesowe
-            </h3>
-            <p class="text-gray-600">
-              W pakiecie Premium: kompleksowe wsparcie w kontraktowaniu z NFZ oraz konsultacje prawno-biznesowe.
-            </p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Program kursu (Moduły I–VI) -->
-    <section id="program" class="py-16 md:py-24 bg-white">
-      <div class="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
-          Program kursu – szczegółowy opis
-        </h2>
-
-        <div class="space-y-4">
-          <!-- Moduł I -->
-          <details class="bg-background-lighter rounded-lg group" open>
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
+            <div class="flex gap-8 mt-10 pt-7 border-t border-line">
               <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł I: Podstawy prowadzenia ciąży przez położną
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatSingleDatePL(edition.onsite.start)}</p>
+                <div class="font-heading text-[26px] md:text-[30px] text-navy leading-none whitespace-nowrap">6</div>
+                <div class="text-[13px] text-fg-soft mt-2">modułów<br>od podstaw po NFZ</div>
               </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Wprowadzenie do roli położnej w prowadzeniu ciąży.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Omówienie obowiązków, zakresu kompetencji i odpowiedzialności prawnej.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Budowanie relacji z pacjentkami – komunikacja i budowanie zaufania.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Podstawy poradnictwa prenatalnego i zasad prowadzenia wizyt.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Dokumentacja medyczna – jak prawidłowo ją prowadzić.
-                </li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Moduł II -->
-          <details class="bg-background-lighter rounded-lg group">
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
               <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł II: Prowadzenie ciąży w praktyce
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatDateRangePL(edition.onsite.start, edition.onsite.end, "long")}</p>
+                <div class="font-heading text-[26px] md:text-[30px] text-navy leading-none whitespace-nowrap">4</div>
+                <div class="text-[13px] text-fg-soft mt-2">ekspertów<br>praktyków</div>
               </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Szczegółowa diagnostyka w ciąży – interpretacja wyników badań.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Rozpoznawanie stanów zagrożenia życia matki i dziecka.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Zasady współpracy z lekarzami specjalistami.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Edukacja pacjentek – przygotowanie do porodu i macierzyństwa.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Wsparcie emocjonalne i psychologiczne przyszłych mam.
-                </li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Moduł III -->
-          <details class="bg-background-lighter rounded-lg group">
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
               <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł III: Kinesiotaping w ciąży
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Stacjonarnie, {formatSingleDatePL(edition.onsite.end)}</p>
+                <div class="font-heading text-[26px] md:text-[30px] text-navy leading-none whitespace-nowrap">12 mc</div>
+                <div class="text-[13px] text-fg-soft mt-2">mentoringu<br>w pakiecie</div>
               </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700 mb-4">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Podstawy metody kinesiotaping i jej zastosowanie w ciąży.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Techniki łagodzenia bólu kręgosłupa, obrzęków i dyskomfortu.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Praktyczne ćwiczenia – aplikacja taśm w różnych dolegliwościach.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Bezpieczeństwo stosowania kinesiotapingu w ciąży.
-                </li>
-              </ul>
-              <p class="text-sm text-gray-600 italic">
-                Prowadząca: mgr Katarzyna Soja-Chydzińska
-              </p>
             </div>
-          </details>
+          </div>
 
-          <!-- Moduł IV -->
-          <details class="bg-background-lighter rounded-lg group">
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
-              <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł IV: Suplementacja, odżywianie i interpretacja badań
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Online – 4 spotkania + nagrania</p>
-              </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700 mb-4">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Zalecenia żywieniowe dla kobiet w ciąży.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Suplementacja – co, kiedy i dla kogo.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Interpretacja badań laboratoryjnych w kontekście ciąży.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Najczęstsze problemy żywieniowe i ich rozwiązania.
-                </li>
-              </ul>
-              <p class="text-sm text-gray-600 italic">
-                Prowadząca: dr Barbara Piekło
-              </p>
-            </div>
-          </details>
-
-          <!-- Moduł V -->
-          <details class="bg-background-lighter rounded-lg group">
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
-              <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł V: Mentoring i wsparcie w prowadzeniu ciąży
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Online – regularne spotkania grupy</p>
-              </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Indywidualne konsultacje i wsparcie w prowadzeniu ciąży.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Rozwiązywanie problemów napotykanych w codziennej praktyce.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Wymiana doświadczeń i najlepszych praktyk.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Budowanie sieci wsparcia zawodowego.
-                </li>
-              </ul>
-            </div>
-          </details>
-
-          <!-- Moduł VI -->
-          <details class="bg-background-lighter rounded-lg group">
-            <summary class="p-6 cursor-pointer list-none flex justify-between items-center">
-              <div>
-                <h3 class="text-xl font-heading font-bold text-gray-900">
-                  Moduł VI: Kontraktowanie z NFZ i wsparcie prawno-biznesowe
-                </h3>
-                <p class="text-sm text-gray-600 mt-1">Tylko w pakiecie Premium</p>
-              </div>
-              <svg class="w-6 h-6 text-gray-600 group-open:rotate-180 transition-transform shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <div class="px-6 pb-6">
-              <ul class="space-y-2 text-gray-700">
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Jak kontraktować usługi z NFZ – procedury i wymagania.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Wsparcie w zakładaniu i prowadzeniu własnej działalności.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Aspekty prawne pracy położnej w Polsce.
-                </li>
-                <li class="flex items-start gap-2">
-                  <span class="text-accent font-bold">•</span>
-                  Konsultacje z ekspertami biznesowymi i prawnymi.
-                </li>
-              </ul>
-            </div>
-          </details>
-        </div>
-
-        <div class="text-center mt-10">
-          <a
-            href="#pakiety"
-            class="inline-block bg-primary text-white px-8 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold"
-          >
-            Wybierz pakiet
-          </a>
-        </div>
-      </div>
-    </section>
-
-    <!-- Pakiety i ceny -->
-    <section id="pakiety" class="py-16 md:py-24 bg-background-lighter">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
-          Wybierz swój pakiet
-        </h2>
-        <p class="text-center text-gray-600 mb-12 text-lg">
-          Dostosuj zakres szkolenia do swoich potrzeb i możliwości
-        </p>
-
-        <div class="grid md:grid-cols-3 gap-6 mb-12">
-          <!-- Pakiet Podstawowy -->
-          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-            <div class="mb-6">
-              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
-                Podstawowy
-              </h3>
-              <p class="text-gray-600 text-sm">
-                Moduł 1
-              </p>
-            </div>
-            <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">{pricing.basic} {pricing.currency}</p>
-            </div>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">1 dzień szkolenia stacjonarnego w {place.city} – <strong>{formatShortDatePL(edition.onsite.start)}</strong></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Obiad w trakcie szkolenia</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Materiały szkoleniowe do pobrania</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Certyfikat ukończenia kursu</span>
-              </li>
-            </ul>
-            <a
-              href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener"
-              class="block bg-gray-200 text-gray-800 px-6 py-3 rounded-lg hover:bg-gray-300 transition-colors font-semibold text-center"
+          <!-- Right: photo + blob + price badge -->
+          <div class="relative">
+            <div
+              class="absolute -right-6 -bottom-6 w-[78%] h-[62%] bg-clay-soft z-0"
+              style="border-radius:18px 18px 18px 120px;"
+            ></div>
+            <div
+              class="relative z-10 overflow-hidden shadow-[0_24px_50px_rgba(35,32,28,0.13)]"
+              style="aspect-ratio:4/5;border-radius:200px 200px 18px 18px;"
             >
-              Wybierz pakiet
-            </a>
-          </div>
-
-          <!-- Pakiet Standard (najpopularniejszy) -->
-          <div class="bg-white rounded-2xl p-8 shadow-2xl border-2 border-accent relative transform scale-105">
-            <div class="absolute -top-4 left-1/2 -translate-x-1/2">
-              <span class="bg-accent text-white px-6 py-1 rounded-full text-sm font-bold shadow-lg">
-                Najpopularniejszy
-              </span>
-            </div>
-            <div class="mb-6 mt-2">
-              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
-                Standard
-              </h3>
-              <p class="text-gray-600 text-sm">
-                Moduły 2-5
-              </p>
-            </div>
-            <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">{pricing.standard} {pricing.currency}</p>
-            </div>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">2 dni szkolenia stacjonarnego w {place.city} – <strong>{formatDateRangePL(edition.onsite.start, edition.onsite.end, "short")}</strong></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">2 obiady w trakcie szkolenia</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Taśmy kinesiotaping do ćwiczeń praktycznych</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Materiały szkoleniowe do pobrania</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Szkolenie online (Moduł IV)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Mentoring i wsparcie (Moduł V)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Możliwość noclegu w {place.city} (opcjonalnie, za dodatkową opłatą)</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Certyfikat ukończenia kursu</span>
-              </li>
-            </ul>
-            <a
-              href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener"
-              class="block bg-accent text-white px-6 py-3 rounded-lg hover:bg-accent-light transition-colors font-semibold text-center shadow-lg"
-            >
-              Wybierz pakiet
-            </a>
-          </div>
-
-          <!-- Pakiet Premium -->
-          <div class="bg-white rounded-2xl p-8 shadow-lg hover:shadow-xl transition-shadow">
-            <div class="mb-6">
-              <h3 class="text-2xl font-heading font-bold text-gray-900 mb-2">
-                Premium
-              </h3>
-              <p class="text-gray-600 text-sm">
-                Wszystko z pakietu Standard + Moduł VI
-              </p>
-            </div>
-            <div class="mb-6">
-              <p class="text-5xl font-bold text-primary">{pricing.premium} {pricing.currency}</p>
-            </div>
-            <ul class="space-y-3 mb-8">
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700"><strong>Wszystko z pakietu Standard</strong></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700"><strong>Moduł VI: Kontraktowanie z NFZ i wsparcie prawno-biznesowe</strong></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Konsultant biznesowy – wsparcie w zakładaniu działalności</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Konsultacje prawne – aspekty prawne pracy położnej</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Dodatkowe materiały i poradniki do pobrania</span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700"><strong>Konsultacje indywidualne 1:1 po szkoleniu</strong></span>
-              </li>
-              <li class="flex items-start gap-2">
-                <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                  <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                </svg>
-                <span class="text-gray-700">Certyfikat ukończenia kursu</span>
-              </li>
-            </ul>
-            <a
-              href={GOOGLE_FORM_URL}
-              target="_blank"
-              rel="noopener"
-              class="block bg-primary text-white px-6 py-3 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center"
-            >
-              Wybierz pakiet
-            </a>
-          </div>
-        </div>
-
-        <!-- Tabelka porównawcza -->
-        <div class="bg-white rounded-2xl p-8 shadow-lg">
-          <h3 class="text-2xl font-heading font-bold text-gray-900 mb-6 text-center">
-            Porównanie pakietów
-          </h3>
-          <div class="overflow-x-auto">
-            <table class="w-full">
-              <thead>
-                <tr class="border-b-2 border-gray-200">
-                  <th class="text-left py-3 px-4 font-heading font-bold text-gray-900">Element</th>
-                  <th class="text-center py-3 px-4 font-heading font-bold text-gray-900">Podstawowy</th>
-                  <th class="text-center py-3 px-4 font-heading font-bold text-gray-900 bg-accent/5">Standard</th>
-                  <th class="text-center py-3 px-4 font-heading font-bold text-gray-900">Premium</th>
-                </tr>
-              </thead>
-              <tbody class="text-sm">
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Moduł I (stacjonarnie)</td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-accent text-xl">✓</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Moduły II-III (stacjonarnie)</td>
-                  <td class="text-center py-3 px-4"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-accent text-xl">✓</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Moduł IV (online 4 spotkania)</td>
-                  <td class="text-center py-3 px-4"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-accent text-xl">✓</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Moduł V (mentoring 12 miesięcy)</td>
-                  <td class="text-center py-3 px-4"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-accent text-xl">✓</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Moduł VI (NFZ + biznes)</td>
-                  <td class="text-center py-3 px-4"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr class="border-b border-gray-100">
-                  <td class="py-3 px-4 text-gray-700">Konsultacje 1:1</td>
-                  <td class="text-center py-3 px-4"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4 bg-accent/5"><span class="text-gray-400">—</span></td>
-                  <td class="text-center py-3 px-4"><span class="text-accent text-xl">✓</span></td>
-                </tr>
-                <tr>
-                  <td class="py-3 px-4 text-gray-700 font-bold">Cena</td>
-                  <td class="text-center py-3 px-4 font-bold text-primary">{pricing.basic} {pricing.currency}</td>
-                  <td class="text-center py-3 px-4 bg-accent/5 font-bold text-primary">{pricing.standard} {pricing.currency}</td>
-                  <td class="text-center py-3 px-4 font-bold text-primary">{pricing.premium} {pricing.currency}</td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Eksperci kursu -->
-    <section class="py-16 md:py-24 bg-white">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-4 text-center">
-          Poznaj naszych ekspertów
-        </h2>
-        <p class="text-center text-gray-600 mb-12 text-lg max-w-3xl mx-auto">
-          Szkolenie prowadzą doświadczone praktyczki, które na co dzień pracują z pacjentkami
-        </p>
-
-        <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          <!-- Ekspert 1: Anna Plaskota-Gładosz -->
-          <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div class="aspect-square">
               <img
-                src={`${baseUrl}images/team/anna-plaskota-gladosz-avatar.png`}
-                alt="mgr Anna Paskota-Gładosz"
+                src={`${baseUrl}images/team/anna-plaskota-gladosz.jpg`}
+                alt="Położna prowadząca kurs"
                 class="w-full h-full object-cover"
               />
             </div>
-            <div class="p-6">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-                mgr Anna Płaskota‑Gładosz
-              </h3>
-              <p class="text-sm text-accent font-semibold mb-3">
-                Położna / CDL
-              </p>
-              <p class="text-sm text-gray-600 mb-3">
-                Położna z ponad 10-letnim doświadczeniem, specjalistka w prowadzeniu ciąży fizjologicznej. Aktywnie praktykująca, prowadzi własną praktykę położniczą.
-              </p>
-              <p class="text-xs text-primary font-semibold">
-                Prowadzi: Moduł I, II
-              </p>
-            </div>
-          </div>
-
-          <!-- Ekspert 2: Kinga Niećko -->
-          <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div class="aspect-square">
-              <img
-                src={`${baseUrl}images/team/kinga-niecko-avatar.png`}
-                alt="mgr Kinga Niećko"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-                mgr Kinga Niećko
-              </h3>
-              <p class="text-sm text-accent font-semibold mb-3">
-                Położna
-              </p>
-              <p class="text-sm text-gray-600 mb-3">
-                Doświadczona położna specjalizująca się w prowadzeniu ciąży i edukacji przedporodowej. Praktyk z wieloletnim stażem klinicznym.
-              </p>
-              <p class="text-xs text-primary font-semibold">
-                Prowadzi: Moduł I, II
-              </p>
-            </div>
-          </div>
-
-          <!-- Ekspert 3: dr Barbara Piekło -->
-          <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div class="aspect-square">
-              <img
-                src={`${baseUrl}images/team/barbara-pieklo-avatar.png`}
-                alt="dr Barbara Piekło"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-                dr Barbara Piekło
-              </h3>
-              <p class="text-sm text-accent font-semibold mb-3">
-                Lekarz / Specjalista
-              </p>
-              <p class="text-sm text-gray-600 mb-3">
-                Specjalistka w zakresie suplementacji, odżywiania w ciąży i interpretacji badań laboratoryjnych. Wieloletnie doświadczenie kliniczne.
-              </p>
-              <p class="text-xs text-primary font-semibold">
-                Prowadzi: Moduł IV (online)
-              </p>
-            </div>
-          </div>
-
-          <!-- Ekspert 4: Katarzyna Soja-Chydzińska -->
-          <div class="bg-background-lighter rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-            <div class="aspect-square">
-              <img
-                src={`${baseUrl}images/team/katarzyna-soja-chydzinska-avatar.png`}
-                alt="mgr Katarzyna Soja-Chydzińska"
-                class="w-full h-full object-cover"
-              />
-            </div>
-            <div class="p-6">
-              <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-                mgr Katarzyna Soja‑Chydzińska
-              </h3>
-              <p class="text-sm text-accent font-semibold mb-3">
-                Fizjoterapeutka
-              </p>
-              <p class="text-sm text-gray-600 mb-3">
-                Specjalistka w zakresie kinesiotapingu i fizjoterapii w ciąży. Certyfikowana terapeutka z wieloletnim doświadczeniem w pracy z ciężarnymi.
-              </p>
-              <p class="text-xs text-primary font-semibold">
-                Prowadzi: Moduł III
-              </p>
+            <div class="absolute -left-4 md:-left-7 bottom-11 z-20 bg-paper rounded-2xl px-5 py-4 shadow-[0_10px_26px_rgba(35,32,28,0.09)]">
+              <div class="text-[12px] text-fg-soft">już od</div>
+              <div class="font-heading text-[24px] md:text-[26px] text-navy leading-tight whitespace-nowrap">{formatPrice(pricing.basic)}</div>
             </div>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- FAQ -->
-    <section id="faq" class="py-16 md:py-24 bg-background-lighter">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-3xl md:text-4xl font-heading font-bold text-gray-900 mb-12 text-center">
-          Najczęściej zadawane pytania
-        </h2>
-        <div class="space-y-4">
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Czy otrzymam fakturę VAT?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              Tak, wystawiamy faktury VAT dla wszystkich uczestników. Dane do faktury możesz podać w formularzu zgłoszeniowym.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Ile osób uczestniczy w szkoleniu?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              Ograniczamy liczbę miejsc do maksymalnie 20 osób, aby zapewnić wysoką jakość szkolenia i możliwość indywidualnego podejścia do każdego uczestnika.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Co obejmuje cena szkolenia?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              W cenie pakietu Podstawowego: 1 dzień szkolenia, obiad, przerwy kawowe, materiały i certyfikat. Pakiet Standard dodatkowo zawiera drugi dzień, szkolenia online, taśmy do kinesiotapingu i możliwość bezpłatnego noclegu. Pakiet Premium to pełen zakres plus kontraktowanie NFZ i konsultacje indywidualne.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Czy szkolenie obejmuje nocleg?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              W pakietach Standard i Premium oferujemy możliwość bezpłatnego noclegu. Szczegóły dot. noclegu otrzymasz po zapisaniu się na szkolenie.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Jak wygląda proces zapisu?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              Wypełniasz formularz zgłoszeniowy, otrzymujesz potwierdzenie emailem z danymi do płatności. Po wpłacie zadatku Twoje miejsce jest zarezerwowane.
-            </p>
-          </details>
-
-          <details class="bg-white rounded-lg p-6 group">
-            <summary class="font-bold text-gray-900 cursor-pointer list-none flex justify-between items-center">
-              <span>Co jeśli nie mogę wziąć udziału?</span>
-              <svg class="w-5 h-5 text-gray-600 group-open:rotate-180 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
-              </svg>
-            </summary>
-            <p class="text-gray-600 mt-4">
-              Możesz przenieść swoją rezerwację na kolejny termin szkolenia lub wyznaczyć osobę zastępczą. Szczegóły dotyczące warunków rezygnacji znajdziesz w regulaminie.
-            </p>
-          </details>
-        </div>
-      </div>
-    </section>
-
-    <!-- Sekcja zapisu (granatowy pasek) -->
-    <section id="zapisy" class="py-16 md:py-24 bg-gradient-to-br from-primary to-primary-dark text-white">
-      <div class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-        <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold mb-6">
-          Zapisz się na szkolenie
-        </h2>
-
-        <div class="bg-white/10 backdrop-blur rounded-2xl p-8 mb-8 max-w-md mx-auto">
-          <p class="text-sm mb-2 text-white/80">Najbliższy termin:</p>
-          <p class="text-3xl font-bold mb-2">18–19 października 2025</p>
-          <p class="text-lg">Mielec, woj. Podkarpackie</p>
-        </div>
-
-        <div class="flex flex-col sm:flex-row gap-4 justify-center mb-6">
-          <a
-            href={GOOGLE_FORM_URL}
-            target="_blank"
-            rel="noopener"
-            class="inline-flex items-center justify-center gap-2 bg-white text-primary px-8 py-4 rounded-lg hover:bg-gray-100 transition-colors font-bold text-lg shadow-xl"
-          >
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+    <!-- INTRO CARD -->
+    <section class="py-20 md:py-24 bg-paper">
+      <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+        <div class="max-w-[880px] mx-auto bg-ivory border border-line rounded-[24px] p-9 md:p-14 grid md:grid-cols-[auto_1fr] gap-8 items-start">
+          <div class="w-[58px] h-[58px] rounded-[16px] bg-clay-soft text-clay-hover flex items-center justify-center shrink-0">
+            <svg class="w-[30px] h-[30px]" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 14l9-5-9-5-9 5 9 5z" />
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.6" d="M12 14l6.16-3.42a12 12 0 01.84 4.42 12 12 0 01-7 1 12 12 0 01-7-1 12 12 0 01.84-4.42L12 14z" />
             </svg>
-            Zapisz się przez formularz
-          </a>
+          </div>
+          <div>
+            <h2 class="font-heading text-[24px] md:text-[30px] mb-5 text-ink leading-tight">
+              Dla położnych, które chcą poszerzyć swoje kompetencje
+            </h2>
+            <p class="text-[16px] md:text-[17px] leading-[1.65] mb-3.5 text-fg">
+              Ten kurs został stworzony specjalnie dla położnych, które pragną w swojej praktyce zawodowej prowadzić ciąże pacjentek zgodnie z aktualnymi standardami i przepisami prawa.
+            </p>
+            <p class="text-[16px] md:text-[17px] leading-[1.65] text-fg">
+              Poznasz nie tylko teorię, ale też praktyczne rozwiązania, które od razu możesz zastosować w pracy.
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROGRAM / MODULES -->
+    <section id="program" class="py-20 md:py-24">
+      <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+        <div class="text-center max-w-[720px] mx-auto mb-14">
+          <div class="eyebrow center">Program kursu</div>
+          <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-ink">
+            Sześć modułów — od podstaw do własnego kontraktu
+          </h2>
         </div>
 
-        <div class="flex flex-col sm:flex-row gap-4 justify-center items-center text-white/90">
-          <a href="tel:+48881489851" class="flex items-center gap-2 hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <div class="max-w-[940px] mx-auto">
+          {modules.map((mod, i) => (
+            <div class={`grid md:grid-cols-[88px_1fr] gap-4 md:gap-8 py-10 border-t border-line ${i === modules.length - 1 ? 'border-b' : ''}`}>
+              <div>
+                <div class="font-heading text-[15px] text-clay tracking-wider uppercase mb-2.5">Moduł {mod.id}</div>
+                <div class="w-[54px] h-[54px] rounded-[15px] bg-ivory-2 text-teal-dark flex items-center justify-center">
+                  <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7" d={mod.icon} />
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <h3 class="font-heading text-[22px] md:text-[25px] mb-2 text-ink">{mod.title}</h3>
+                {mod.sub && (
+                  <p class="text-[15.5px] text-fg-soft mb-4 italic font-heading">{mod.sub}</p>
+                )}
+                <ul class="space-y-2.5">
+                  {mod.items.map((item) => (
+                    <li class="flex gap-3 items-start text-[15px] md:text-[16px] leading-[1.5] text-fg-1">
+                      <svg class="w-[19px] h-[19px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                      </svg>
+                      <span set:html={item} />
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- PRICING -->
+    <section id="pakiety" class="py-20 md:py-24 bg-ivory-2">
+      <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+        <div class="text-center max-w-[720px] mx-auto mb-14">
+          <div class="eyebrow center">Pakiety</div>
+          <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-ink">
+            Wybierz pakiet dla siebie
+          </h2>
+          <p class="text-[17px] md:text-[19px] leading-[1.6] mt-4 text-fg">
+            Trzy poziomy zaangażowania — od jednego dnia szkolenia po pełne wsparcie z kontraktem NFZ.
+          </p>
+        </div>
+
+        <div id="zapisy" class="grid md:grid-cols-3 gap-6 items-start">
+          <!-- Basic -->
+          <div class="bg-paper border border-line rounded-[22px] p-9 flex flex-col transition-all duration-250 hover:shadow-[0_10px_26px_rgba(35,32,28,0.09)]">
+            <div class="font-heading text-[24px] text-ink mb-1.5">Pakiet Podstawowy</div>
+            <div class="font-heading text-[36px] md:text-[42px] text-navy leading-none mb-1.5">{formatPrice(pricing.basic)}</div>
+            <div class="text-[13.5px] text-fg-soft mb-6 pb-5 border-b border-line">Moduł I</div>
+            <ul class="space-y-3.5 mb-7 flex-grow">
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>1 dzień szkolenia stacjonarnego w {place.city} — {formatDateRangePL(edition.onsite.start, edition.onsite.start, 'short')}</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Obiad i przerwy kawowe</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Materiały szkoleniowe</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Certyfikat ukończenia</span>
+              </li>
+            </ul>
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener" class="btn btn-ghost w-full">Wybierz pakiet</a>
+          </div>
+
+          <!-- Standard (featured) -->
+          <div class="bg-paper border-[1.5px] border-clay rounded-[22px] p-9 flex flex-col relative shadow-[0_24px_50px_rgba(35,32,28,0.13)]">
+            <div class="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-clay text-white font-sans font-semibold text-[12.5px] tracking-wide px-4.5 py-1.5 rounded-full whitespace-nowrap shadow-[0_10px_26px_rgba(35,32,28,0.09)]">
+              ★ Najpopularniejszy
+            </div>
+            <div class="font-heading text-[24px] text-ink mb-1.5">Pakiet Standard</div>
+            <div class="font-heading text-[36px] md:text-[42px] text-navy leading-none mb-1.5">{formatPrice(pricing.standard)}</div>
+            <div class="text-[13.5px] text-fg-soft mb-6 pb-5 border-b border-line">Pakiet Podstawowy + Moduły II–V</div>
+            <ul class="space-y-3.5 mb-7 flex-grow">
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] font-semibold text-ink">
+                <svg class="w-[18px] h-[18px] text-clay shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Wszystko z Pakietu Podstawowego</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Prowadzenie ciąży w praktyce, USG, kinesiotaping, suplementacja, mentoring online</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Szkolenia stacjonarne {formatDateRangePL(edition.onsite.start, edition.onsite.end, 'short')} w {place.city} + szkolenie online</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>2 obiady · taśmy do kinesiotapingu</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Możliwość bezpłatnego noclegu</span>
+              </li>
+            </ul>
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener" class="btn btn-clay w-full">Wybierz pakiet</a>
+          </div>
+
+          <!-- Premium -->
+          <div class="bg-paper border border-line rounded-[22px] p-9 flex flex-col transition-all duration-250 hover:shadow-[0_10px_26px_rgba(35,32,28,0.09)]">
+            <div class="font-heading text-[24px] text-ink mb-1.5">Pakiet Premium</div>
+            <div class="font-heading text-[36px] md:text-[42px] text-navy leading-none mb-1.5">{formatPrice(pricing.premium)}</div>
+            <div class="text-[13.5px] text-fg-soft mb-6 pb-5 border-b border-line">Pakiet Standard + Moduł VI</div>
+            <ul class="space-y-3.5 mb-7 flex-grow">
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] font-semibold text-ink">
+                <svg class="w-[18px] h-[18px] text-clay shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Wszystko z Pakietu Standard</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Kontraktowanie z NFZ, wsparcie konsultanta biznesowego i prawnika</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Materiały do pobrania</span>
+              </li>
+              <li class="flex gap-3 items-start text-[14.5px] leading-[1.5] text-fg-1">
+                <svg class="w-[18px] h-[18px] text-teal shrink-0 mt-0.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                </svg>
+                <span>Indywidualne konsultacje 1:1</span>
+              </li>
+            </ul>
+            <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener" class="btn btn-ghost w-full">Wybierz pakiet</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- EXPERTS -->
+    <section class="py-20 md:py-24 bg-paper">
+      <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+        <div class="text-center max-w-[720px] mx-auto mb-14">
+          <div class="eyebrow center">Eksperci</div>
+          <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-ink">
+            Poznaj naszych prowadzących
+          </h2>
+          <p class="text-[17px] md:text-[19px] leading-[1.6] mt-4 text-fg">
+            Praktycy ochrony zdrowia, którzy na co dzień pracują z pacjentkami.
+          </p>
+        </div>
+
+        <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {experts.map((expert) => (
+            <div class="text-center">
+              <div class="w-[130px] h-[130px] rounded-full mx-auto mb-5 overflow-hidden border-[3px] border-clay-soft bg-clay-soft flex items-center justify-center">
+                {expert.photo ? (
+                  <img src={`${baseUrl}images/team/${expert.photo}`} alt={expert.name} class="w-full h-full object-cover" />
+                ) : (
+                  <span class="font-heading text-[38px] text-clay-hover">{expert.initials}</span>
+                )}
+              </div>
+              <h3 class="font-heading text-[19px] mb-1 text-ink">{expert.name}</h3>
+              <div class="font-sans text-[13px] font-semibold text-clay mb-2.5">{expert.role}</div>
+              <p class="text-[14.5px] leading-[1.55] text-fg">{expert.desc}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    <!-- FINAL CTA -->
+    <section class="py-20 md:py-24 bg-clay text-white">
+      <div class="max-w-[860px] mx-auto px-6 lg:px-12 text-center">
+        <h2 class="font-heading text-[32px] md:text-[44px] mb-5 text-white leading-tight tracking-tight">
+          Nie czekaj — poszerz swoje kompetencje
+        </h2>
+        <p class="text-[18px] md:text-[19px] text-white/90 mb-8 leading-relaxed max-w-[40em] mx-auto">
+          Dołącz do grona wykwalifikowanych położnych, które z sukcesem prowadzą ciąże w swojej praktyce zawodowej.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-3.5 justify-center">
+          <a href={GOOGLE_FORM_URL} target="_blank" rel="noopener" class="btn btn-white">Zapisz się teraz</a>
+          <a href="tel:+48881489851" class="btn btn-outline-w">
+            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
             </svg>
-            +48 881 489 851
-          </a>
-          <span class="hidden sm:inline">|</span>
-          <a href="mailto:kontakt@medykalni.pl" class="flex items-center gap-2 hover:text-white transition-colors">
-            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            kontakt@medykalni.pl
+            Zadzwoń i zapytaj
           </a>
         </div>
-
-        <p class="mt-6 text-white/75 text-sm">
-          Rozmowa bezpłatna i niezobowiązująca – chętnie odpowiemy na wszystkie pytania
-        </p>
       </div>
     </section>
   </main>

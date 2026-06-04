@@ -1,118 +1,70 @@
 ---
-// Sekcja Autorytet - zespół ekspertów
+// Authority — zespół, editorial z łukami na portretach
 const baseUrl = import.meta.env.BASE_URL;
+
+const team = [
+  {
+    name: 'Anna Plaskota-Gładosz',
+    role: 'Położna / CDL',
+    desc: 'Ponad 10 lat doświadczenia, specjalistka w prowadzeniu ciąży fizjologicznej.',
+    photo: 'anna-plaskota-gladosz.jpg',
+    objectPosition: 'center',
+  },
+  {
+    name: 'Anna Buczek',
+    role: 'Położna',
+    desc: 'Edukacja położnych i zarządzanie projektami szkoleniowymi.',
+    photo: 'anna-buczek.jpg',
+    objectPosition: 'center 30%',
+  },
+  {
+    name: 'Magdalena Golba',
+    role: 'Położna',
+    desc: 'Szkolenia medyczne i rozwój kompetencji położnych.',
+    photo: 'magdalena-golba.jpg',
+    objectPosition: 'center',
+  },
+  {
+    name: 'Artur Gładosz',
+    role: 'Fizjoterapeuta / MBA',
+    desc: '20 lat praktyki klinicznej i zarządzania placówkami.',
+    photo: 'artur-gladosz.png',
+    objectPosition: 'center',
+  },
+];
 ---
 
-<section id="o-nas" class="py-16 md:py-24 bg-background-lighter">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="text-center mb-12">
-      <h2 class="text-3xl md:text-4xl lg:text-5xl font-heading font-bold text-gray-900 mb-4">
-        Za projektem stoją praktycy ochrony zdrowia
+<section id="o-nas" class="py-20 md:py-24 bg-paper">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="text-center max-w-[720px] mx-auto mb-14">
+      <div class="eyebrow center">Za projektem</div>
+      <h2 class="font-heading text-[32px] md:text-[44px] mt-4 leading-tight tracking-tight text-ink">
+        Stoją praktycy ochrony zdrowia
       </h2>
-      <p class="text-xl text-gray-600 max-w-3xl mx-auto">
-        Nasz zespół to medycy z wieloletnim doświadczeniem, którzy nadal pracują w ochronie zdrowia
+      <p class="text-[17px] md:text-[19px] leading-[1.6] mt-4 text-fg">
+        Nasz zespół to medycy z wieloletnim doświadczeniem, którzy nadal pracują w ochronie zdrowia.
       </p>
     </div>
 
-    <!-- Zdjęcie zespołu 
-    <div class="mb-16">
-      <div class="max-w-4xl mx-auto rounded-2xl overflow-hidden shadow-xl">
-        <img
-          src="/images/team/medykalni-wszyscy.jpg"
-          alt="Zespół Medykalni"
-          class="w-full h-auto"
-        />
-      </div>
-    </div>
-  -->
-    <div class="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-      <!-- Team Member 1: Anna Plaskota-Gładosz -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="aspect-square">
-          <img
-            src={`${baseUrl}images/team/anna-plaskota-gladosz.jpg`}
-            alt="Anna Plaskota-Gładosz"
-            class="w-full h-full object-cover"
-          />
+    <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-8">
+      {team.map((member) => (
+        <div>
+          <div
+            class="bg-ivory-2 overflow-hidden mb-5"
+            style="aspect-ratio:3/4;border-radius:140px 140px 16px 16px;"
+          >
+            <img
+              src={`${baseUrl}images/team/${member.photo}`}
+              alt={member.name}
+              class="w-full h-full object-cover"
+              style={`object-position:${member.objectPosition};`}
+            />
+          </div>
+          <h3 class="font-heading text-[20px] mb-1 text-ink">{member.name}</h3>
+          <div class="text-[13px] font-semibold text-clay mb-3">{member.role}</div>
+          <p class="text-[14.5px] leading-[1.55] text-fg">{member.desc}</p>
         </div>
-        <div class="p-6">
-          <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-            Anna Plaskota-Gładosz
-          </h3>
-          <p class="text-sm text-accent font-semibold mb-2">
-            Położna / CDL
-          </p>
-          <p class="text-sm text-gray-600 mb-3">
-            Położna z ponad 10-letnim doświadczeniem, specjalistka w prowadzeniu ciąży fizjologicznej. Prowadzi program modułowy kursu i konsultacje kliniczne.
-          </p>
-        </div>
-      </div>
-
-      <!-- Team Member 2: Anna Buczek -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="aspect-square">
-          <img
-            src={`${baseUrl}images/team/anna-buczek.jpg`}
-            alt="Anna Buczek"
-            class="w-full h-full object-cover object-[center_30%]"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-            Anna Buczek
-          </h3>
-          <p class="text-sm text-accent font-semibold mb-2">
-            Położna
-          </p>
-          <p class="text-sm text-gray-600 mb-3">
-            Specjalistka w edukacji położnych i zarządzaniu projektami szkoleniowymi. Koordynuje programy rozwojowe dla medyków.
-          </p>
-        </div>
-      </div>
-
-      <!-- Team Member 3: Magdalena Golba -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="aspect-square">
-          <img
-            src={`${baseUrl}images/team/magdalena-golba.jpg`}
-            alt="Magdalena Golba"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-            Magdalena Golba
-          </h3>
-          <p class="text-sm text-accent font-semibold mb-2">
-            Położna
-          </p>
-          <p class="text-sm text-gray-600 mb-3">
-            Ekspertka w szkoleniach medycznych i rozwoju kompetencji położnych. Prowadzi warsztaty praktyczne i sesje mentoringowe.
-          </p>
-        </div>
-      </div>
-
-      <!-- Team Member 4: Artur Gładosz -->
-      <div class="bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow">
-        <div class="aspect-square">
-          <img
-            src={`${baseUrl}images/team/artur-gladosz2.png`}
-            alt="Artur Gładosz"
-            class="w-full h-full object-cover"
-          />
-        </div>
-        <div class="p-6">
-          <h3 class="text-xl font-heading font-bold text-gray-900 mb-1">
-            Artur Gładosz
-          </h3>
-          <p class="text-sm text-accent font-semibold mb-2">
-            Fizjoterapeuta / MBA
-          </p>
-          <p class="text-sm text-gray-600 mb-3">
-            20 lat praktyki klinicznej i zarządzania placówkami medycznymi. Wspiera projekty biznesowe i rekrutację dla placówek.
-          </p>
-        </div>
-      </div>
+      ))}
     </div>
   </div>
 </section>

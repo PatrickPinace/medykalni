@@ -1,87 +1,81 @@
 ---
-// Główna sekcja Hero - najważniejsza sekcja decyzyjna
+// Hero — Editorial Ciepły
 const baseUrl = import.meta.env.BASE_URL;
 ---
 
-<section class="bg-gradient-to-b from-background-lighter to-white py-16 md:py-24">
-  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-    <div class="grid md:grid-cols-2 gap-12 items-center">
-      <!-- Lewa strona - Treść -->
-      <div class="space-y-6">
-        <h1 class="text-4xl md:text-5xl lg:text-6xl font-heading font-bold text-gray-900 leading-tight">
-          Szkolenia i projekty dla położnych oraz placówek medycznych
+<section class="py-20 md:py-24">
+  <div class="max-w-[1180px] mx-auto px-6 lg:px-12">
+    <div class="grid md:grid-cols-[1.05fr_0.95fr] gap-10 md:gap-16 items-center">
+      <!-- Lewa: treść -->
+      <div>
+        <div class="eyebrow">Szkolenia prowadzone przez praktyków</div>
+        <h1 class="font-heading text-[44px] md:text-[52px] lg:text-[64px] leading-[1.1] tracking-tight my-6 text-ink">
+          Opieka, która zaczyna się od <em>pewności</em> położnej
         </h1>
-
-        <p class="text-lg md:text-xl text-gray-600 leading-relaxed">
-          Praktyczna wiedza i wsparcie prowadzone przez praktyków ochrony zdrowia – bez teorii i motywacyjnych sloganów.
+        <p class="text-[18px] md:text-[20px] leading-[1.6] max-w-[30em] text-fg">
+          Praktyczna wiedza i wsparcie prowadzone przez praktyków ochrony zdrowia — bez teorii i motywacyjnych sloganów.
         </p>
 
-        <!-- CTA Buttons -->
-        <div class="flex flex-col sm:flex-row gap-4 pt-4">
+        <div class="flex flex-wrap gap-3.5 mt-8">
           <a
             href={`${baseUrl}szkolenia/prowadzenie-ciazy-przez-polozna`}
-            class="bg-primary text-white px-8 py-4 rounded-lg hover:bg-primary-dark transition-colors font-semibold text-center shadow-lg hover:shadow-xl"
+            class="btn btn-navy"
           >
             Zobacz kurs
           </a>
           <a
             href={`${baseUrl}projekty`}
-            class="border-2 border-primary text-primary px-8 py-4 rounded-lg hover:bg-primary hover:text-white transition-colors font-semibold text-center"
+            class="btn btn-ghost"
           >
             Poznaj projekty
           </a>
         </div>
 
-        <!-- Dowód społeczny -->
-        <div class="pt-8 border-t border-gray-200">
-          <div class="grid grid-cols-2 gap-4 text-sm">
-            <div class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Prowadzą praktycy ochrony zdrowia</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Program modułowy</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Materiały i certyfikat</span>
-            </div>
-            <div class="flex items-start gap-2">
-              <svg class="w-5 h-5 text-accent shrink-0 mt-0.5" fill="currentColor" viewBox="0 0 20 20">
-                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-              </svg>
-              <span class="text-gray-700">Zapis online</span>
-            </div>
+        <!-- Trust facts -->
+        <div class="flex gap-9 mt-12 pt-8 border-t border-line">
+          <div>
+            <div class="font-heading text-[34px] text-navy leading-none">10+</div>
+            <div class="text-[13.5px] text-fg-soft mt-2 leading-tight">lat praktyki<br>w ochronie zdrowia</div>
+          </div>
+          <div>
+            <div class="font-heading text-[34px] text-navy leading-none">6</div>
+            <div class="text-[13.5px] text-fg-soft mt-2 leading-tight">modułów<br>od diagnozy do porodu</div>
+          </div>
+          <div>
+            <div class="font-heading text-[34px] text-navy leading-none">1:1</div>
+            <div class="text-[13.5px] text-fg-soft mt-2 leading-tight">mentoring<br>i konsultacje</div>
           </div>
         </div>
       </div>
 
-      <!-- Prawa strona - Zdjęcie -->
+      <!-- Prawa: zdjęcie z łukiem + clay blob + badge -->
       <div class="relative">
-        <div class="aspect-[4/3] bg-gradient-to-br from-primary to-accent rounded-2xl shadow-2xl overflow-hidden">
-          <!-- Placeholder dla zdjęcia z pracy szkoleniowej 
-          <div class="w-full h-full flex items-center justify-center text-white bg-primary/20">
-            <div class="text-center p-8">
-              <svg class="w-24 h-24 mx-auto mb-4 opacity-50" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
-              </svg>
-              <p class="text-sm opacity-75">Tutaj umieść zdjęcie z rzeczywistego szkolenia</p>
-            </div>
-          </div>
-          Odkomentuj i użyj gdy będzie zdjęcie: -->
+        <!-- Clay blob za zdjęciem -->
+        <div
+          class="absolute -right-6 -bottom-6 w-[78%] h-[62%] bg-clay-soft z-0"
+          style="border-radius:18px 18px 18px 120px;"
+        ></div>
+
+        <!-- Zdjęcie w łuku -->
+        <div
+          class="relative z-10 overflow-hidden shadow-[0_24px_50px_rgba(35,32,28,0.13)]"
+          style="aspect-ratio:4/5;border-radius:200px 200px 18px 18px;"
+        >
           <img
             src={`${baseUrl}images/team/medykalni-wszyscy.jpg`}
-            alt="Szkolenie medyczne w praktyce"
+            alt="Zespół Medykalni"
             class="w-full h-full object-cover"
           />
-          
+        </div>
+
+        <!-- Pływający badge -->
+        <div class="absolute -left-4 md:-left-8 bottom-12 z-20 bg-paper rounded-2xl px-5 py-4 shadow-[0_10px_26px_rgba(35,32,28,0.09)] flex items-center gap-3 max-w-[230px]">
+          <span class="w-[42px] h-[42px] rounded-full bg-teal text-white flex items-center justify-center shrink-0">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+            </svg>
+          </span>
+          <p class="text-[13px] text-ink font-semibold leading-tight">Materiały, certyfikat i zapis online w cenie</p>
         </div>
       </div>
     </div>
